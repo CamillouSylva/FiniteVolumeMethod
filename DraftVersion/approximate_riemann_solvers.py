@@ -1,6 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
-import numerical_fluxes
+from DraftVersion import numerical_fluxes
 
 
 class Euler1D:
