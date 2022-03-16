@@ -1,0 +1,19 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book #Defines the structure of this Table of Contents (e.g., how to interpret the key names).
+root: intro #The first page of your book
+options: # The options key will be applied to all chapters, but not sub-sections
+  numbered: True
+parts: 
+  - caption: Problème de Riemann associé aux équations d'Euler en 1D
+    chapters: #A list of entries
+      - file: ProblemeRiemann/ProblemeRiemann.md #A path to a file that contains the content for a chapter / section and these are relative to the root document
+      # sections:
+      #   - file: ProblemeRiemann/ProblemeRiemann.md
+  - caption : Les Solveurs de Riemann approchés Rusanov, HLL et HLLC
+    chapters:
+      - file: SolveursRiemann/SolveursRiemann.md
+  - caption: Résultats numériques
+    chapters:
+      - file: ResultatsNumeriques/ResultatsNumeriques.md
