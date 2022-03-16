@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -279,21 +280,21 @@
 <p>qui s’écrit vectoriellement :</p>
 <div class="math notranslate nohighlight">
 \[
- \boxed{\frac{\partial \pmb{U}}{\partial t} + \frac{\partial \bold{F(U)}}{\partial x} = \bold{0}} 
+ \boxed{\frac{\partial \pmb{U}}{\partial t} + \frac{\partial \pmb{F(U)}}{\partial x} = \pmb{0}} 
 \]</div>
-<p>où <span class="math notranslate nohighlight">\(\bold{U}\)</span> est le vecteur des variables conservatives et <span class="math notranslate nohighlight">\(\bold{F(U)}\)</span> le vecteur flux, définis par :</p>
+<p>où <span class="math notranslate nohighlight">\(\pmb{U}\)</span> est le vecteur des variables conservatives et <span class="math notranslate nohighlight">\(\pmb{F(U)}\)</span> le vecteur flux, définis par :</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\bold{U}=\begin{pmatrix} \rho \\ \rho u \\ \rho e \end{pmatrix} = \begin{pmatrix} \rho \\ m \\ E \end{pmatrix}, \quad \bold{F(U)}=\begin{pmatrix} \rho u \\ \rho u^2 + p \\ (\rho e + p)u \end{pmatrix} = \begin{pmatrix} m \\ \frac{m^2}{\rho} + p \\ (E + p)\frac{m}{\rho} \end{pmatrix}.
+\pmb{U}=\begin{pmatrix} \rho \\ \rho u \\ \rho e \end{pmatrix} = \begin{pmatrix} \rho \\ m \\ E \end{pmatrix}, \quad \pmb{F(U)}=\begin{pmatrix} \rho u \\ \rho u^2 + p \\ (\rho e + p)u \end{pmatrix} = \begin{pmatrix} m \\ \frac{m^2}{\rho} + p \\ (E + p)\frac{m}{\rho} \end{pmatrix}.
 \end{split}\]</div>
 <p>On ajoute la condition initiale à deux états suivante :</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\bold{U}(x,0) = \bold{U}^{(0)}(x) =
+\pmb{U}(x,0) = \pmb{U}^{(0)}(x) =
 \left\{
 \begin{array}{ll}
- \bold{U_L} \quad \text{si} \quad x&lt;0 \\
- \bold{U_R} \quad \text{si} \quad x&gt;0 
+ \pmb{U_L} \quad \text{si} \quad x&lt;0 \\
+ \pmb{U_R} \quad \text{si} \quad x&gt;0 
 \end{array}
 \right.
 \end{split}\]</div>
