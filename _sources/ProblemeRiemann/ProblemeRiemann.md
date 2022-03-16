@@ -20,7 +20,7 @@ $$
 qui s'écrit vectoriellement : 
 
 $$
- \boxed{\frac{\partial \bold{U}}{\partial t} + \frac{\partial \bold{F(U)}}{\partial x} = \bold{0}} 
+ \boxed{\frac{\partial \pmb{U}}{\partial t} + \frac{\partial \bold{F(U)}}{\partial x} = \bold{0}} 
 $$
 
 où $\bold{U}$ est le vecteur des variables conservatives et $\bold{F(U)}$ le vecteur flux, définis par : 
