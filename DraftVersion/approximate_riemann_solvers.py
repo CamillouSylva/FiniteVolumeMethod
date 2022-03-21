@@ -1,6 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
-from DraftVersion import numerical_fluxes
+import numerical_fluxes
 
 
 class Euler1D:
@@ -181,7 +181,7 @@ class Euler1D:
                     self.rr = self.r[i]
                     self.mr = self.m[i]
                     self.Er = self.E[i]
-
+                print("rl=", self.rl)
                 F[0, i] = \
                     numerical_fluxes.numerical_flux(self.type_solver, self.rl, self.ml, self.El, self.rr, self.mr,
                                                     self.Er)[
@@ -197,6 +197,7 @@ class Euler1D:
                 Fr[i] = F[0, i]
                 Fm[i] = F[1, i]
                 FE[i] = F[2, i]
+                print("FE[i] = ", FE[i])
             for i in range(0, self.Nx):
                 self.r[i] = self.r[i] - (dt / self.dx) * (Fr[i + 1] - Fr[i])  # densite
                 self.m[i] = self.m[i] - (dt / self.dx) * (Fm[i + 1] - Fm[i])  # moment
@@ -213,6 +214,11 @@ class Euler1D:
         #
         # plt.show()
         #   print("xm après = ", self.xm)
+        print("Res = ", self.r)  # self.r, self.m, self.E, self.u, self.p, self.e, self.a)
+        print("xm = ", self.xm)
+        print("p = ", self.p)
+        print("len(xm) = ", len(self.xm), "\nlen(p)", len(self.p))
+        print(self.ul, self.rl, self.pl, "\n", self.ur, self.rr, self.pr)
         return self.r, self.m, self.E, self.u, self.p, self.e, self.a
 
     def euler_bis(self, solver_type, rl, ul, pl, rr, ur, pr, T, x_0):
