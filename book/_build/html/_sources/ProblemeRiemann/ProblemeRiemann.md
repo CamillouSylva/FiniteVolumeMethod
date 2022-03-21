@@ -20,23 +20,23 @@ $$
 qui s'écrit vectoriellement : 
 
 $$
- \boxed{\frac{\partial \bold{U}}{\partial t} + \frac{\partial \bold{F(U)}}{\partial x} = \bold{0}} 
+ \boxed{\frac{\partial \pmb{U}}{\partial t} + \frac{\partial \pmb{F(U)}}{\partial x} = \pmb{0}} 
 $$
 
-où $\bold{U}$ est le vecteur des variables conservatives et $\bold{F(U)}$ le vecteur flux, définis par : 
+où $\pmb{U}$ est le vecteur des variables conservatives et $\pmb{F(U)}$ le vecteur flux, définis par : 
 
 $$
-\bold{U}=\begin{pmatrix} \rho \\ \rho u \\ \rho e \end{pmatrix} = \begin{pmatrix} \rho \\ m \\ E \end{pmatrix}, \quad \bold{F(U)}=\begin{pmatrix} \rho u \\ \rho u^2 + p \\ (\rho e + p)u \end{pmatrix} = \begin{pmatrix} m \\ \frac{m^2}{\rho} + p \\ (E + p)\frac{m}{\rho} \end{pmatrix}.
+\pmb{U}=\begin{pmatrix} \rho \\ \rho u \\ \rho e \end{pmatrix} = \begin{pmatrix} \rho \\ m \\ E \end{pmatrix}, \quad \pmb{F(U)}=\begin{pmatrix} \rho u \\ \rho u^2 + p \\ (\rho e + p)u \end{pmatrix} = \begin{pmatrix} m \\ \frac{m^2}{\rho} + p \\ (E + p)\frac{m}{\rho} \end{pmatrix}.
 $$
 
 On ajoute la condition initiale à deux états suivante :  
 
 $$
-\bold{U}(x,0) = \bold{U}^{(0)}(x) =
+\pmb{U}(x,0) = \pmb{U}^{(0)}(x) =
 \left\{
 \begin{array}{ll}
- \bold{U_L} \quad \text{si} \quad x<0 \\
- \bold{U_R} \quad \text{si} \quad x>0 
+ \pmb{U_L} \quad \text{si} \quad x<0 \\
+ \pmb{U_R} \quad \text{si} \quad x>0 
 \end{array}
 \right.
 $$

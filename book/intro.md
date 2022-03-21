@@ -1,5 +1,8 @@
 # Méthodes volumes finis pour la résolution de la dynamique des gaz eulérienne et lagrangienne en 1D
 
+```{tableofcontents}
+```
+
 Le but de ce dépôt est de fournir des solutions approchées aux problèmes de Riemann associés aux équations d'Euler unidimensionnelles par la méthode volumes finis.
 
 On donnera la solution exacte du problème de Riemann qui est utile à plusieurs égards. Elle représente la solution d'un système de lois de conservation hyperboliques soumises aux conditions initiales les plus simples et non triviales; elle contient néanmoins le caractère physique et mathématique fondamental de l'ensemble des lois de conservation concerné. 
