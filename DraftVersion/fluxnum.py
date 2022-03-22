@@ -51,7 +51,7 @@ def fluxnum(type, rl, ml, El, rr, mr, Er):
         # Sr=(ur+ar).real #vitesse maximale
         Sl = min((ul - al).real, (ur - ar).real)
         Sr = max((ul + al).real, (ur + ar).real)
-        Se = (pr - pl + rl * ul * (Sl - ul) - rr * ur * (Sr - ur)) / (rr * (Sl - ul) - rr * (Sr - ur))
+        Se = (pr - pl + rl * ul * (Sl - ul) - rr * ur * (Sr - ur)) / (rl * (Sl - ul) - rr * (Sr - ur))
 
         Uel = rl * ((Sl - ul) / (Sl - Se)) * np.array([[1.], [Se], [El / rl + (Se - ul) * (Se + pl / (rl * (Sl - ul)))]])
         Uer = rr * ((Sr - ur) / (Sr - Se)) * np.array([[1.], [Se], [Er / rr + (Se - ur) * (Se + pr / (rr * (Sr - ur)))]])

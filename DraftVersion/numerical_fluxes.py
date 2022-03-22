@@ -41,7 +41,7 @@ def numerical_flux(solver_type: str, rl: float, ml: float, El: float, rr: float,
         Sl = (abs(ul) + al).real  # % vitesse minimale
 
         Sr = (abs(ur) + ar).real  # vitesse maximale
-     #   print(Sr, Sl)
+        #   print(Sr, Sl)
 
         Sp = max(Sl, Sr)
 
@@ -54,7 +54,7 @@ def numerical_flux(solver_type: str, rl: float, ml: float, El: float, rr: float,
         Sl = (ul - al).real  # vitesse minimale
 
         Sr = (ur + ar).real  # vitesse maximale
-      #  print(Sl, Sr)
+        #  print(Sl, Sr)
         if Sl >= 0:
             Fi[0] = Fl[0]
             Fi[1] = Fl[1]
@@ -78,12 +78,14 @@ def numerical_flux(solver_type: str, rl: float, ml: float, El: float, rr: float,
 
         Sl = min((ul - al).real, (ur - ar).real)
         Sr = max((ul + al).real, (ur + ar).real)
-      #  print("pr",rl * (Sl - ul))
-        Se = (pr - pl + rl * ul * (Sl - ul) - rr * ur * (Sr - ur)) / (rr * (Sl - ul) - rr * (Sr - ur))
+        #  print("pr",rl * (Sl - ul))
+        Se = (pr - pl + rl * ul * (Sl - ul) - rr * ur * (Sr - ur)) / (rl * (Sl - ul) - rr * (Sr - ur))
         print((Sl - Se))
-        Uel =(rl * ((Sl - ul) / (Sl - Se)) * np.array([1, Se, El / rl + (Se - ul) * (Se + pl / (rl * (Sl - ul)))], dtype=float))
-        #print("Uel", Uel)
-        Uer = rr * ((Sr - ur) / (Sr - Se)) * np.array([1, Se, Er / rr + (Se - ur) * (Se + pr / (rr * (Sr - ur)))], dtype=float)
+        Uel = (rl * ((Sl - ul) / (Sl - Se)) * np.array([1, Se, El / rl + (Se - ul) * (Se + pl / (rl * (Sl - ul)))],
+                                                       dtype=float))
+        # print("Uel", Uel)
+        Uer = rr * ((Sr - ur) / (Sr - Se)) * np.array([1, Se, Er / rr + (Se - ur) * (Se + pr / (rr * (Sr - ur)))],
+                                                      dtype=float)
 
         if Sl >= 0:
             Fi[0] = Fl[0]
