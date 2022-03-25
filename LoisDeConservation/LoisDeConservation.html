@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Lois de conservation &#8212; Méthodes volumes finis pour la résolution de la dynamique des gaz eulérienne et lagrangienne 1D</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Problème de Riemann associé aux équations d’Euler en 1D" href="../ProblemeRiemann/ProblemeRiemann.html" />
+    <link rel="prev" title="Méthodes volumes finis pour la résolution de la dynamique des gaz eulérienne et lagrangienne en 1D" href="../intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Méthodes volumes finis pour la résolution de la dynamique des gaz eulérienne et lagrangienne 1D</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Méthodes volumes finis pour la résolution de la dynamique des gaz eulérienne et lagrangienne en 1D
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lois de conservation
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Lois de conservation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Problème de Riemann associé aux équations d'Euler en 1D
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ProblemeRiemann/ProblemeRiemann.html">
+   2. Problème de Riemann associé aux équations d’Euler en 1D
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Les Solveurs de Riemann approchés Rusanov, HLL et HLLC
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../SolveursRiemann/SolveursRiemann.html">
+   3. Les solveurs de Riemann approchés Rusanov, HLL et HLLC
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Résultats numériques
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ResultatsNumeriques/ResultatsNumeriques.html">
+   4. Résultats numériques
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Basculer la navigation" aria-controls="site-navigation"
+                title="Basculer la navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Téléchargez cette page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/LoisDeConservation/LoisDeConservation.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Télécharger le fichier source" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimer au format PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/CamillouSylva/FiniteVolumeMethod"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Dépôt source"><i
+                    class="fab fa-github"></i>dépôt</button></a>
+        <a class="issues-button"
+            href="https://github.com/CamillouSylva/FiniteVolumeMethod/issues/new?title=Issue%20on%20page%20%2FLoisDeConservation/LoisDeConservation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Ouvrez un problème"><i class="fas fa-lightbulb"></i>signaler un problème</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Mode plein écran"
+        title="Mode plein écran"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenu
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formule-de-transport-de-reynolds">
+   1.1. Formule de transport de Reynolds
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conservation-de-la-masse">
+   1.2. Conservation de la masse
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conservation-du-moment">
+   1.3. Conservation du moment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conservation-de-l-energie-totale">
+   1.4. Conservation de l’énergie totale
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lois de conservation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contenu </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formule-de-transport-de-reynolds">
+   1.1. Formule de transport de Reynolds
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conservation-de-la-masse">
+   1.2. Conservation de la masse
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conservation-du-moment">
+   1.3. Conservation du moment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conservation-de-l-energie-totale">
+   1.4. Conservation de l’énergie totale
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="lois-de-conservation">
+<h1><span class="section-number">1. </span>Lois de conservation<a class="headerlink" href="#lois-de-conservation" title="Permalink to this headline">¶</a></h1>
+<p>Dans cette section, on étudie les équations régissant la dynamique des fluides compressibles, en particulier les gaz pour lesquels on négligera les forces dues à la gravité, les contraintes de cisaillement et les flux de chaleur appliqués. On se restreindra aux gaz parfait (non visqueux). Ces équations forment le <strong>système d’Euler</strong>. Dans tout notre mémoire, on travaille en dimension un. D’abord, on trouve la formulation intégrale des équations d’Euler unidimensionnelles en coordonnées eulériennes et lagrangiennes respectivement. Ensuite, on écrit la formulation différentielle des équations d’Euler dépendantes du temps, unidimensionnelles.</p>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<p>Deux types de variables sont possibles pour exprimer nos équations :</p>
+<ul class="simple">
+<li><p>Les <strong>variables conservatives</strong> : la densité <span class="math notranslate nohighlight">\(\rho\)</span>, le moment <span class="math notranslate nohighlight">\(m\)</span> et l’énergie totale <span class="math notranslate nohighlight">\(E\)</span> du gaz qui apparaissent dans la deuxième loi de Newton, les lois de conservation de la masse, de la quantité de mouvement et de l’énergie totale.</p></li>
+<li><p>Les <strong>variables primitives</strong> ou variables physiques (<span class="math notranslate nohighlight">\(\rho\)</span>, <span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(p\)</span>) où <span class="math notranslate nohighlight">\(u\)</span> est la vitesse particulaire et <span class="math notranslate nohighlight">\(p\)</span> la pression du gaz.</p></li>
+</ul>
+</div>
+<p>Ici, nous allons exprimer les équations d’Euler en variables conservatives en supposant que les quantités impliquées c’est-à-dire la densité <span class="math notranslate nohighlight">\(\rho\)</span>, le moment <span class="math notranslate nohighlight">\(m=\rho u\)</span> et l’énergie totale <span class="math notranslate nohighlight">\(E=\rho e\)</span>, où <span class="math notranslate nohighlight">\(e\)</span> est l’énergie totale spécifique soient suffisamment régulières pour que la différentiation soit possible. Cependant, lorsqu’on considérera le cas d’un choc par exemple, on retirera cette hypothèse pour pouvoir définir des solutions discontinues (donc des variables discontinues).</p>
+<p>Nous allons à présent introduire les outils mathématiques nécessaires qui vont nous permettre d’obtenir le système des équations d’Euler en 1D en coordonnées eulériennes et lagrangiennes. En particulier, la formule de Reynolds. Dans toute la suite on travaillera en 1D.</p>
+<div class="section" id="formule-de-transport-de-reynolds">
+<h2><span class="section-number">1.1. </span>Formule de transport de Reynolds<a class="headerlink" href="#formule-de-transport-de-reynolds" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight" id="equation-formule-de-reynolds">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-formule-de-reynolds" title="Permalink to this equation">¶</a></span>\[\frac{d}{dt}\int_{\omega (t)} f(x,t)dx = \int_{\omega (t)} \left( \partial_t f(x,t) + \partial_x (f(x,t)\,v(x)) \right)dx.\]</div>
+<p>Tous les points bougent avec la vitesse du fluide, on note <span class="math notranslate nohighlight">\(x(X,t)\)</span> la position d’un point du fluide à l’instant t, initialement localisé à X.</p>
+<p>On introduit les <em>courbes caractéristiques</em> :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left\{
+\begin{array}{ll}
+\displaystyle \frac{\partial x(X,t)}{\partial t} = u(x(X,t),t) \, , \\[4mm]
+x(X,0) = X. \\
+\end{array} 
+\right. 
+\end{split}\]</div>
+<p>On définit le <em>Jacobien de la transformation</em> :</p>
+<div class="math notranslate nohighlight">
+\[J(x,t) = \frac{\partial x(X,t)}{\partial X}.\]</div>
+<p><span class="math notranslate nohighlight">\(\bullet\)</span> Soit <span class="math notranslate nohighlight">\(\varphi : \omega (t) \times \mathbb{R} \longrightarrow \mathbb{R}\)</span> une fonction régulière. On définit la dérivée totale :</p>
+<div class="math notranslate nohighlight">
+\[\frac{d \varphi}{dt} = \frac{\partial \varphi}{\partial t} + \frac{\partial x}{\partial t} \  \frac{\partial \varphi}{\partial x}.\]</div>
+<p>Soit <span class="math notranslate nohighlight">\(I(t) = [x_1(t) \, , \, x_2(t)]\)</span> un volume de contrôle.</p>
+<p>Pour <span class="math notranslate nohighlight">\(i=1,2\)</span> : <span class="math notranslate nohighlight">\(X_i = x_i(0) = x(X_i,0)\)</span> et <span class="math notranslate nohighlight">\( x_i(t) = x(X_i,t) \)</span></p>
+<p>Dans la suite, nous allons établir nos équations en coordonnées eulériennes <span class="math notranslate nohighlight">\(x\)</span> et en coordonnées lagrangiennes <span class="math notranslate nohighlight">\(X\)</span> respectivement.</p>
+</div>
+<div class="section" id="conservation-de-la-masse">
+<h2><span class="section-number">1.2. </span>Conservation de la masse<a class="headerlink" href="#conservation-de-la-masse" title="Permalink to this headline">¶</a></h2>
+<p>La masse totale contenue dans un volume matérielle <span class="math notranslate nohighlight">\(I(t)\)</span> est donnée par :</p>
+<div class="math notranslate nohighlight">
+\[ m(I(t)) = \int_{I(t)} \rho(x,t)dx. \]</div>
+<p>Celle-ci étant constante, on a :</p>
+<div class="math notranslate nohighlight">
+\[ \frac{dm(I(t))}{dt} = 0 \]</div>
+<p>C’est-à-dire, par la <em>formule de Reynolds</em> :</p>
+<div class="math notranslate nohighlight">
+\[\int_{I(t)}\left(\frac{\partial \rho}{\partial t} + \frac{\partial(\rho \, u)}{\partial x}\right)dx = 0 \, , \quad \forall \, I(t) \; \text{volume de contrôle}. \]</div>
+<p>Ce qui correspond à la version intégrale de la conservation de la masse.</p>
+<p>Autre écriture :</p>
+<div class="math notranslate nohighlight">
+\[\int_{I(t)} \frac{\partial \rho}{\partial t}dx + [\rho \, u]_{x_1(t)}^{x_2(t)} = 0 \]</div>
+<p>Donc, comme le volume de contrôle <span class="math notranslate nohighlight">\(I(t)\)</span> est arbitraire, il faut que :</p>
+<div class="math notranslate nohighlight">
+\[\boxed{\frac{\partial \rho}{\partial t} + \frac{\partial(\rho \, u)}{\partial x} = 0  \quad \textbf{conservation de la masse (formalisme eulérien)}.}\]</div>
+<p>C’est-à-dire la version locale de la conservation de la masse en eulérien.</p>
+<p>On exprime maintenant la conservation de la masse en lagrangien. Par un changement de variable, on a :</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dt} \int_{I(0)} \rho(x(X,t),t) \, J(X,t)dX = 0 \]</div>
+<p>i.e</p>
+<div class="math notranslate nohighlight">
+\[\int_{I(0)} \frac{d}{dt}\left(\rho(x(X,t),t)\, J(X,t)\right)dX = 0\]</div>
+<p>donc</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dt}\left(\rho(x(X,t),t)J(X,t)\right)=0\]</div>
+<p>c’est-à-dire :</p>
+<div class="math notranslate nohighlight">
+\[\rho(x(X,t),t)J(X,t)= \rho(x(X,0),0)J(X,0)= \rho(X,0).1= \rho_0(X)   
+\quad \left(car \ J(X,0)= \frac{\partial x(X,0)}{\partial X}= \frac{\partial X}{\partial X}=1\right) \]</div>
+<p>où <span class="math notranslate nohighlight">\(\rho_0(X) \ \)</span> est densité initiale.</p>
+<div class="math notranslate nohighlight">
+\[\boxed{\rho(x(X,t),t)J(X,t)= \rho_0(X) \quad \textbf{conservation  de  la  masse  (formalisme lagrangien)}.}\]</div>
+<p>On vient d’obtenir la version locale de la conservation de la masse en lagrangien.</p>
+<p>Avant de continuer sur d’autres lois de conservation, on va établir une formule que l’on utilisera ultérieurement.</p>
+<p>Soit <span class="math notranslate nohighlight">\(\varphi\)</span> une fonction régulière:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+ \frac{d}{dt} \int_{I(t)} \rho\,\varphi\,dx &amp;= \int_{I(0)} \frac{d}{dt}(\rho\, J \, \varphi)dX \\
+&amp;= \int_{I(0)} \rho\ J \frac{d\varphi}{dt}dX \\
+&amp;= \int_{I(t)} \rho \frac{d\varphi}{dt}dx\\ 
+\end{align*}\end{split}\]</div>
+<p>On obtient :</p>
+<div class="math notranslate nohighlight" id="equation-derivee-particulaire">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-derivee-particulaire" title="Permalink to this equation">¶</a></span>\[  \boxed{\frac{d}{dt} \int_{I(t)} \rho\,\varphi\,dx = \int_{I(t)} \rho \frac{d\varphi}{dt}dx} \]</div>
+</div>
+<div class="section" id="conservation-du-moment">
+<h2><span class="section-number">1.3. </span>Conservation du moment<a class="headerlink" href="#conservation-du-moment" title="Permalink to this headline">¶</a></h2>
+<p>La résultante des forces exercées sur notre système est décrite par deux composantes :</p>
+<ul class="simple">
+<li><p>une pour les forces extérieures, en l’occurrence la force de pesanteur;</p></li>
+<li><p>une pour les forces de contact exercées par le fluide environnant;</p></li>
+</ul>
+<p>La première est nulle par hypothèse.
+La seconde est définie à l’aide d’un tenseur des contraintes <span class="math notranslate nohighlight">\(\sigma \,\)</span>.</p>
+<p>De plus, pour les fluides newtoniens la loi de comportement est :</p>
+<div class="math notranslate nohighlight">
+\[\sigma = -p \, \pmb{Id} +  \pmb{\Pi}\]</div>
+<p>où : <span class="math notranslate nohighlight">\(p= p(x,t)\)</span> correspond à la pression et <span class="math notranslate nohighlight">\(\mu &gt; 0\)</span> à la viscosité dynamique du fluide; <span class="math notranslate nohighlight">\(\pmb{\Pi}\)</span> est le tenseur des contraintes visqueuses.<br />
+Dans notre cas, on se restreint aux gaz parfaits : <span class="math notranslate nohighlight">\(\pmb{\Pi} = \pmb{0}\)</span>. Le tenseur des contraintes est donc :</p>
+<div class="math notranslate nohighlight">
+\[\sigma = -p \]</div>
+<p>Par la <strong>deuxième loi de Newton</strong>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+\frac{d}{dt} \int_{x_1(t)}^{x_2(t)} \rho\,u\,dx &amp;= -p(x_2(t),t)+p(x_1(t),t) \\
+&amp;= -[p(x,t)]_{x_1(t)}^{x_2(t)} \\
+\end{align*}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-formulation-integrale-conservation-du-moment">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-formulation-integrale-conservation-du-moment" title="Permalink to this equation">¶</a></span>\[\boxed{\frac{d}{dt} \int_{x_1(t)}^{x_2(t)} \rho\,u\,dx=-\int_{x_1(t)}^{x_2(t)} \frac{\partial p(x,t)}{\partial x} dx} \]</div>
+<p>Or, par <a class="reference internal" href="#equation-derivee-particulaire">(1.2)</a>, on sait que :</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dt} \int_{x_1(t)}^{x_2(t)} \rho\, u\, dx = \int_{x_1(t)}^{x_2(t)} \rho \frac{du}{dt}dx\]</div>
+<p>Donc, en utilisant aussi \eqref{formulation intégrale conservation du moment}, on obtient la version intégrale de la conservation du moment en lagrangien :</p>
+<div class="math notranslate nohighlight">
+\[\int_{x_1(t)}^{x_2(t)}\left(\rho \frac{du}{dt}+\frac{\partial p}{\partial x}\right)dx = 0 \, , \quad \text{pour tout volume de contrôle} \ I(t).\]</div>
+<p>c’est-à-dire :</p>
+<div class="math notranslate nohighlight">
+\[\boxed{\rho \frac{du}{dt}+\frac{\partial p}{\partial x} = 0 \quad \textbf{conservation du moment (formalisme lagrangien).}}\]</div>
+<p>Ce qui correspond à la version locale de la conservation du moment en lagrangien.</p>
+<p>Pour le formalisme eulérien, on démarre de <a class="reference internal" href="#equation-formule-de-reynolds">(1.1)</a> la formule de Reynolds et ensuite on utilise l’équation <a class="reference internal" href="#equation-formulation-integrale-conservation-du-moment">(1.3)</a> :</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dt} \int_{x_1(t)}^{x_2(t)} \rho\, u\, dx = \int_{x_1(t)}^{x_2(t)}\left(\ \frac{\partial (\rho\,u)}{\partial t}+\frac{\partial((\rho\, u)\,u)}{\partial x}\right)dx\]</div>
+<p>D’où avec <a class="reference internal" href="#equation-formulation-integrale-conservation-du-moment">(1.3)</a> :</p>
+<div class="math notranslate nohighlight">
+\[\int_{x_1(t)}^{x_2(t)}\left(\frac{\partial (\rho\,u)}{\partial t}+\frac{\partial(\rho\,u^2+\,p)}{\partial x}\right)dx = 0\, , \quad \text{pour tout volume de contrôle} \ I(t).\]</div>
+<p>Ceci est la version intégrale en eulérien.
+On déduit la version locale de la conservation du moment en eulérien :</p>
+<div class="math notranslate nohighlight">
+\[\boxed{ \frac{\partial (\rho\,u)}{\partial t}+\frac{\partial(\rho\,u^2+\,p)}{\partial x} = 0  \quad \textbf{conservation du moment (formalisme eulérien).} }\]</div>
+</div>
+<div class="section" id="conservation-de-l-energie-totale">
+<h2><span class="section-number">1.4. </span>Conservation de l’énergie totale<a class="headerlink" href="#conservation-de-l-energie-totale" title="Permalink to this headline">¶</a></h2>
+<p>L’énergie totale est <span class="math notranslate nohighlight">\(E\)</span> la somme de l’énergie cinétique et de l’énergie interne :</p>
+<div class="math notranslate nohighlight">
+\[E=\rho \epsilon + \frac{1}{2} \rho u^2=\rho e\]</div>
+<p>où <span class="math notranslate nohighlight">\(\epsilon\)</span> correspond à l’énergie interne spécifique et <span class="math notranslate nohighlight">\(e=\epsilon + \frac{1}{2} u^2\)</span> l’énergie totale spécifique.</p>
+<p>Par le <span class="math notranslate nohighlight">\(1^{er}\)</span> <em>principe de la thermodynamique</em>, l’énergie totale se conserve : la variation de l’énergie totale <span class="math notranslate nohighlight">\(E\)</span> d’un système thermodynamique fermé (aucun échange de matière mais échange d’énergie avec le milieu extérieur) est égale à la quantité d’énergie échangée avec le milieu extérieur, par transfert thermique (chaleur) et transfert mécanique (travail, proportionnel à la force et au déplacement).</p>
+<p>Or, ici on néglige les flux de chaleur appliqués. Ainsi, la variation de l’énergie totale est entièrement déterminée par le travail induit par les forces de pression :</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+\frac{d}{dt} \int_{x_1(t)}^{x_2(t)} \rho\, e\, dx &amp;= -p(x_2(t),t)u(x_2(t),t) + p(x_1(t),t)u(x_1(t),t)  
+\end{align*} \]</div>
+<div class="math notranslate nohighlight" id="equation-formulation-integrale-conservation-de-l-energie-totale">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-formulation-integrale-conservation-de-l-energie-totale" title="Permalink to this equation">¶</a></span>\[ \boxed{\frac{d}{dt} \int_{x_1(t)}^{x_2(t)} \rho\, e\, dx = -\int_{x_1(t)}^{x_2(t)} \frac{\partial (p\,u)}{\partial x} dx } \]</div>
+<div class="math notranslate nohighlight">
+\[\Rightarrow  \int_{x_1(t)}^{x_2(t)} \rho\frac{de}{dt} dx + \int_{x_1(t)}^{x_2(t)} \frac{\partial (p\,u)}{\partial x} dx = 0\]</div>
+<p>c’est-à-dire :</p>
+<div class="math notranslate nohighlight">
+\[\int_{x_1(t)}^{x_2(t)} \left(\rho \frac{de}{dt} + \frac{\partial (p\,u)}{\partial x} \right) dx = 0 \, , \quad \text{pour tout volume de contrôle} \ I(t).\]</div>
+<p>La version intégrale de la conservation de l’énergie totale en lagrangien.
+On a donc la version locale :</p>
+<div class="math notranslate nohighlight">
+\[\boxed{\rho \frac{de}{dt} + \frac{\partial (p\,u)}{\partial x} = 0 \quad \textbf{conservation de l'énergie totale (formalisme lagrangien).} }\]</div>
+<p>Puis on déduit le formalisme eulérien en utilisant la formule de Reynolds <a class="reference internal" href="#equation-formule-de-reynolds">(1.1)</a> :</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dt} \int_{x_1(t)}^{x_2(t)} \rho\, e\, dx = \int_{x_1(t)}^{x_2(t)}\left(\frac{\partial (\rho\,e)}{\partial t}+\frac{\partial(\rho\,e\,u)}{\partial x}\right)dx\]</div>
+<p>Et par <a class="reference internal" href="#equation-formulation-integrale-conservation-de-l-energie-totale">(1.4)</a> on a :</p>
+<div class="math notranslate nohighlight">
+\[\int_{x_1(t)}^{x_2(t)}\left(\frac{\partial (\rho\,e)}{\partial t}+\frac{\partial(\rho\,e\,u)}{\partial x} + \frac{\partial(p\,u)}{\partial x}\right)dx = 0 \, , \quad \text{pour tout volume de contrôle} \ I(t).\]</div>
+<p>La version intégrale de la conservation de l’énergie totale en eulérien.
+Finalement, on obtient la version locale :</p>
+<div class="math notranslate nohighlight">
+\[\boxed{\frac{\partial (\rho\,e)}{\partial t}+\frac{\partial((\rho\,e\,+p)u)}{\partial x} = 0 \quad \textbf{conservation de l'énergie totale (formalisme eulérien).} }\]</div>
+<p>Nous avons obtenu les systèmes d’équations suivants :</p>
+<p><strong>Équations en coordonnée eulérienne :</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{
+\begin{array}{lll}
+\displaystyle \frac{\partial \rho}{\partial t} + \frac{\partial (\rho u)}{\partial x} = 0 \, , \\
+\displaystyle \frac{\partial (\rho u )}{\partial t} + \frac{\partial (\rho u^2 + p)}{\partial x} = 0 \, , \\ 
+\displaystyle \frac{\partial (\rho e )}{\partial t} + \frac{\partial ((\rho e + p)u)}{\partial x} = 0.  
+\end{array}
+\right.\end{split}\]</div>
+<p><strong>Équations en coordonnée lagrangienne :</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{
+\begin{array}{lll}
+\rho J = \rho_0 \, , \\
+\displaystyle \rho \frac{du}{dt} + \frac{\partial p}{\partial x} = 0 \, , \\
+\displaystyle \rho \frac{de}{dt} + \frac{\partial(pu)}{\partial x} = 0 \, ,
+\end{array}
+\right.\end{split}\]</div>
+<p>Dans la suite, nous allons voir que les équations d’Euler, en coordonnées eulériennes, ainsi définies admettent des solutions discontinues, telles que des ondes de choc et des discontinuités de contact. En général, la forme différentielle (version locale) des lois de conservation n’est pas valide car repose sur une hypothèse de régularité. Tandis que la version intégrale  l’est toujours.</p>
+<p>Finalement, nous avons établi les équations d’Euler 1D, dépendantes du temps en coordonnées eulériennes et lagrangiennes respectivement. Elles expriment la conservation de la masse, du moment et de l’énergie totale d’un gaz parfait compressible. La prochaine étape repose sur l’étude du problème de Riemann associé au système des équations d’Euler en coordonnées eulérienne.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./LoisDeConservation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Méthodes volumes finis pour la résolution de la dynamique des gaz eulérienne et lagrangienne en 1D</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../ProblemeRiemann/ProblemeRiemann.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Problème de Riemann associé aux équations d’Euler en 1D</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Par Sylvain Coulibaly et Camille Saint-Martin<br/>
+    
+        &copy; droits d'auteur 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
