@@ -17,8 +17,8 @@ class RiemannSolver:
                  gamma: float = 1.4,
                  ):
         """
-        :param W_L: Vecteur des variables primitives (r_l, u_l, p_l) de l'état initial à gauche
-        :param W_R: Vecteur des variables primitives (r_r, u_r, p_r) de l'état initial à droite
+        :param W_L: Liste des variables primitives (r_l, u_l, p_l) de l'état initial à gauche
+        :param W_R: Liste des variables primitives (r_r, u_r, p_r) de l'état initial à droite
         :param nx: Nombre de mailles
         :param x_0: Point de discontinuité
         :param T: Temps final
@@ -87,64 +87,34 @@ class RiemannSolver:
         """
         return self._W_R
 
-    # @property
-    # def rl(self):
-    #     return self.W_L.r
-    #
-    # # @rl.setter
-    # # def rl(self, new_rl):
-    # #     self.W_L.rl = new_rl
-    # #
-    # @property
-    # def ul(self):
-    #     return self.W_L.u
-    #
-    # @ul.setter
-    # def ul(self, new_ul):
-    #     self.W_L.ul = new_ul
-    #
-    # @property
-    # def pl(self):
-    #     return self.W_L.p
-    #
-    # @pl.setter
-    # def pl(self, new_pl):
-    #     self.W_L.pl = new_pl
-    #
-    # ######
-    #
-    # @property
-    # def rr(self):
-    #     # print(self.W_R.rr)
-    #     return self.W_R.r
-    #
-    # @rr.setter
-    # def rr(self, new_rr):
-    #     self.W_R.rr = new_rr
-    #
-    # @property
-    # def ur(self):
-    #     return self.W_R.u
-    #
-    # @ur.setter
-    # def ur(self, new_ur):
-    #     self.W_R.ur = new_ur
-    #
-    # @property
-    # def pr(self):
-    #     return self.W_R.p
-    #
-    # @pr.setter
-    # def pr(self, new_pr):
-    #     self.W_R.pr = new_pr
+    @W_R.setter
+    def W_R(self, wr: list):
+        """
+        :param wr: liste [u=rho, r, p] des variables primitives à droite
+        :return: Mettre à jour le vecteur des variables primitives à droite
+        """
+        if len(wr) == 3:
+            self._W_R = Wr(*wr)
+
+    @property
+    def xm(self) -> np.ndarray:
+        """
+        return: Vecteur des points milieux
+        """
+        return self._xm
 
     @property
     def U(self):
+        """
+        return: Vecteur des variables conservatives
+        """
         return self._U
-        # return np.array([self.r,self.m, self.E]).reshape(3, self.Nx)
 
     @property
-    def F(self):
+    def F(self) -> np.ndarray:
+        """
+        return: Vecteur flux F(U) contenant le vecteur des variables conservatives U
+        """
         return self._F
 
     # @property
@@ -158,6 +128,29 @@ class RiemannSolver:
     # @U.setter
     # def U(self, new_u):
     #     self._U = new_u
+    @property
+    def r(self) -> np.ndarray:
+        """
+        return: Vecteur contenant la variable conservative rho
+                représentant la densité sur chaque maille (en espace).
+        """
+        return self._r
+
+    @property
+    def m(self) -> np.ndarray:
+        """
+        return: Vecteur contenant la variable conservative m
+                représentant le moment sur chaque maille (en espace).
+        """
+        return self._m
+
+    @property
+    def E(self) -> np.ndarray:
+        """
+        return: Vecteur contenant la variable conservative E
+                représentant l'énergie totale sur chaque maille (en espace).
+        """
+        return self._E
 
     def initialization(self):
         """
@@ -165,13 +158,13 @@ class RiemannSolver:
         """
         self.x = np.zeros((1, self.Nx + 1)).reshape(self.Nx + 1, 1)  # noeuds
         # print(self.x)
-        self.xm = np.zeros((1, self.Nx)).reshape(self.Nx, 1)  # points milieu
+        self._xm = np.zeros((1, self.Nx)).reshape(self.Nx, 1)  # points milieu
         self._U = np.zeros((3, self.Nx)).reshape(3, self.Nx)
         # r, m et E définis comme ci-dessous permet de mettre à jour le vecteur U lorsque les
         # valeurs r, m et E changent.
-        self.r = self.U[0]
-        self.m = self.U[1]
-        self.E = self.U[2]
+        self._r = self.U[0]  # r=rho ->
+        self._m = self.U[1]  # m variable conservative représentant le moment
+        self._E = self.U[2]  # E variable conservative représentant la densité
         # self.r = np.zeros((1, self.Nx)).reshape(self.Nx, 1)  # densite
         #  self.m = np.zeros((1, self.Nx)).reshape(self.Nx, 1)  # moment
         #  self.E = np.zeros((1, self.Nx)).reshape(self.Nx, 1)  # energie totale
