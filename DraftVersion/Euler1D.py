@@ -183,7 +183,7 @@ class RiemannSolver:
         # print(self.x)
         self.xm = np.zeros((1, self.Nx)).reshape(self.Nx, 1)  # points milieu
         self._U = np.zeros((3, self.Nx)).reshape(3, self.Nx)
-        # r, m et E définis comme ci-dessous permet de mettre à jour le vecteur U lorsqu'on les
+        # r, m et E définis comme ci-dessous permet de mettre à jour le vecteur U lorsque les
         # valeurs r, m et E changent.
         self.r = self.U[0]
         self.m = self.U[1]
@@ -505,13 +505,14 @@ if __name__ == "__main__":
     # RS = RiemannSolver(W_L=[1., 0., 1.], W_R=[0.125, 0, 0.1], T=0.2)
     #
     # RS.solve()
+    # RS.plot()
     RuS = RusanovSolver(W_L=[1., 0., 1.], W_R=[0.125, 0, 0.1], T=0.2, L=1)
     RuS.solve()
     RuS.plot()
 
-    hll = HLLCSolver(W_L=[1., 0., 1.], W_R=[0.125, 0, 0.1], T=0.2)
-    hll.solve()
-    hll.plot()
-    hllc = HLLCSolver(W_L=[1., 0., 1.], W_R=[0.125, 0, 0.1], T=0.2, L=1)
-    hllc.solve()
-    hllc.plot()
+    # hll = HLLSolver(W_L=[1., 0., 1.], W_R=[0.125, 0, 0.1], T=0.2)
+    # hll.solve()
+    # hll.plot()
+    # hllc = HLLCSolver(W_L=[1., 0., 1.], W_R=[0.125, 0, 0.1], T=0.2, L=1)
+    # hllc.solve()
+    # hllc.plot()
