@@ -15,6 +15,9 @@ class W:
     def __repr__(self):
         return f" W = ({self.r}, {self.u}, {self.p})"
 
+    def __len__(self):
+        return len(self.__dict__)
+
     @property
     def r(self):
         """
@@ -106,3 +109,5 @@ if __name__ == "__main__":
     print(v)
     v.u = 22
     print(v)
+    print(len(v))
+    print(v.__dict__)
