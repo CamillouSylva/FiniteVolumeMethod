@@ -1,44 +1,20 @@
 # -*- coding: utf-8 -*-
 
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-
-
-class CanvasMatplotlib(FigureCanvasQTAgg):
-
-    def __init__(self, width=5, height=4, dpi=100):
-        self.fig = Figure(figsize=(width, height), dpi=dpi)
-        self.axes = self.fig.add_subplot(111)
-        super(CanvasMatplotlib, self).__init__(self.fig)
-        self.axes.format_coord = lambda x, y: '(x = ' + format(x, '1.4f') + ', \t' + ' y = ' + format(y, '1.4f') + ')'
-        self.axes.grid(color='green', linestyle='--', linewidth=0.5)
-        self.axes.yaxis.tick_left()  # enlève les traits de graduation sur le côté gauche du graphique
-        self.axes.xaxis.tick_bottom()  # enlève les traits de graduation sur la partie supérieure du graphique
-        self.axes.spines[['top', 'right']].set_color('none')
-        self.add_arrows()
-
-    def add_arrows(self):
-        al = 8.  # arrow length in points
-        arrowprops = dict(clip_on=True,  # plotting outside axes on purpose
-                          # frac=1.,  # make end arrowhead the whole size of arrow
-                          headwidth=5.,  # in points
-                          facecolor='k')
-        kwargs = dict(
-            xycoords='axes fraction',
-            textcoords='offset points',
-            arrowprops=arrowprops,
-        )
-        self.axes.annotate("", (1, 0), xytext=(-al, 0), **kwargs)
-        self.axes.annotate("", (0, 1), xytext=(0, -al), **kwargs)  # left spin arrow
+from FiniteVolumeMethod.IHM.canvas_matplotlib import CanvasMatplotlib
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(858, 681)
+        # MainWindow.resize(1200, 900)
+        # Get current screen geometry
+        self.Screen = QtWidgets.QDesktopWidget().screenGeometry()
+        print(self.Screen, self.Screen.height(), self.Screen.width())
+        MainWindow.resize(self.Screen.width(), self.Screen.height())
+        # MainWindow.showMaximized()  # Ne marche pas sous Windows
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.centralwidget)
@@ -63,7 +39,7 @@ class Ui_MainWindow(object):
         self.label_domain_length = QtWidgets.QLabel(self.layoutWidget)
         self.label_domain_length.setObjectName("label_domain_length")
         self.horizontalLayout_L.addWidget(self.label_domain_length)
-
+        locale = QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedKingdom)
         self.spinBox_L = QtWidgets.QDoubleSpinBox(self.layoutWidget)
         self.spinBox_L.setInputMethodHints(QtCore.Qt.ImhDigitsOnly)
         self.spinBox_L.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
@@ -75,6 +51,7 @@ class Ui_MainWindow(object):
         self.spinBox_L.setProperty("value", 1)
         self.spinBox_L.setSingleStep(0.01)
         self.spinBox_L.setDecimals(2)
+        self.spinBox_L.setLocale(locale)
         # self.spinBox_L.setDisplayIntegerBase(10)
         self.spinBox_L.setObjectName("spinBox_L")
         self.horizontalLayout_L.addWidget(self.spinBox_L)
@@ -88,6 +65,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.label_number_cells)
 
         self.spinBox_Nx = QtWidgets.QSpinBox(self.layoutWidget)
+        self.spinBox_Nx.setObjectName("spinBox_Nx")
         self.spinBox_Nx.setInputMethodHints(QtCore.Qt.ImhDigitsOnly)
         self.spinBox_Nx.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
         self.spinBox_Nx.setCorrectionMode(QtWidgets.QAbstractSpinBox.CorrectToNearestValue)
@@ -97,7 +75,8 @@ class Ui_MainWindow(object):
         self.spinBox_Nx.setSingleStep(1)
         self.spinBox_Nx.setProperty("value", 100)
         self.spinBox_Nx.setDisplayIntegerBase(10)
-        self.spinBox_Nx.setObjectName("spinBox_Nx")
+        self.spinBox_Nx.setLocale(locale)
+
         self.horizontalLayout_2.addWidget(self.spinBox_Nx)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
@@ -118,6 +97,7 @@ class Ui_MainWindow(object):
         self.spinBox_cfl.setProperty("value", 0.9)
         self.spinBox_cfl.setSingleStep(0.01)
         self.spinBox_cfl.setDecimals(2)
+        self.spinBox_cfl.setLocale(locale)
 
         # self.spinBox_cfl.setDisplayIntegerBase(2)
         self.spinBox_cfl.setObjectName("spinBox_cfl")
@@ -126,6 +106,62 @@ class Ui_MainWindow(object):
         self.horizontalLayout_cfl.addItem(spacerItem_cfl)
         #  self.verticalLayout_2.addWidget(self.label_domain_length)
         self.verticalLayout_2.addLayout(self.horizontalLayout_cfl)
+
+        self.horizontalLayout_x0 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_x0.setObjectName("horizontalLayout_x0")
+
+        self.label_x0_condition = QtWidgets.QLabel(self.layoutWidget)
+        self.label_x0_condition.setObjectName("label_x0_condition")
+        self.horizontalLayout_x0.addWidget(self.label_x0_condition)
+
+        self.spinBox_x0 = QtWidgets.QDoubleSpinBox(self.layoutWidget)
+        self.spinBox_x0.setInputMethodHints(QtCore.Qt.ImhDigitsOnly)
+        self.spinBox_x0.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.spinBox_x0.setCorrectionMode(QtWidgets.QAbstractSpinBox.CorrectToNearestValue)
+        self.spinBox_x0.setPrefix("")
+        self.spinBox_x0.setMinimum(-9999)
+        self.spinBox_x0.setMaximum(9999)
+        # self.spinBox_x0.setSingleStep(1)
+        self.spinBox_x0.setProperty("value", 0.3)
+        self.spinBox_x0.setSingleStep(0.01)
+        self.spinBox_x0.setDecimals(2)
+        self.spinBox_x0.setLocale(locale)
+
+        # self.spinBox_x0.setDisplayIntegerBase(2)
+        self.spinBox_x0.setObjectName("spinBox_x0")
+        self.horizontalLayout_x0.addWidget(self.spinBox_x0)
+        spacerItem_x0 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_x0.addItem(spacerItem_x0)
+        #  self.verticalLayout_2.addWidget(self.label_domain_length)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_x0)
+
+        self.horizontalLayout_T = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_T.setObjectName("horizontalLayout_cfl")
+
+        self.label_T_condition = QtWidgets.QLabel(self.layoutWidget)
+        self.label_T_condition.setObjectName("label_T_condition")
+        self.horizontalLayout_T.addWidget(self.label_T_condition)
+
+        self.spinBox_T = QtWidgets.QDoubleSpinBox(self.layoutWidget)
+        self.spinBox_T.setObjectName("spinBox_T")
+        self.spinBox_T.setInputMethodHints(QtCore.Qt.ImhDigitsOnly)
+        self.spinBox_T.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.spinBox_T.setCorrectionMode(QtWidgets.QAbstractSpinBox.CorrectToNearestValue)
+        self.spinBox_T.setPrefix("")
+        self.spinBox_T.setMinimum(0.01)
+        self.spinBox_T.setMaximum(999)
+        # self.spinBox_T0.setSingleStep(1)
+        self.spinBox_T.setProperty("value", 0.2)
+        self.spinBox_T.setSingleStep(0.01)
+        self.spinBox_T.setDecimals(2)
+        self.spinBox_T.setLocale(locale)
+
+        # self.spinBox_T.setDisplayIntegerBase(2)
+        self.horizontalLayout_T.addWidget(self.spinBox_T)
+        spacerItem_T = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_T.addItem(spacerItem_T)
+        #  self.verticalLayout_2.addWidget(self.label_domain_length)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_T)
 
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
@@ -144,9 +180,9 @@ class Ui_MainWindow(object):
         self.label_initial_states_3 = QtWidgets.QLabel(self.layoutWidget)
         self.label_initial_states_3.setObjectName("label_initial_states_3")
         self.verticalLayout.addWidget(self.label_initial_states_3)
-        self.tableView_initial_states_3 = QtWidgets.QTableView(self.layoutWidget)
-        self.tableView_initial_states_3.setObjectName("tableView_initial_states_3")
-        self.verticalLayout.addWidget(self.tableView_initial_states_3)
+        # self.tableView_initial_states_3 = QtWidgets.QTableView(self.layoutWidget)
+        # self.tableView_initial_states_3.setObjectName("tableView_initial_states_3")
+        # self.verticalLayout.addWidget(self.tableView_initial_states_3)
         self.verticalLayout_2.addLayout(self.verticalLayout)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -197,10 +233,10 @@ class Ui_MainWindow(object):
 
         self.mycanvas_1 = CanvasMatplotlib(width=4, height=5,
                                            dpi=100)  # QtWidgets.QGraphicsView(self.widget1)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-
-        self.mycanvas_1.setFont(font)
+        # font = QtGui.QFont()
+        # font.setPointSize(11)
+        #
+        # self.mycanvas_1.setFont(font)
         # self.mycanvas_1.setObjectName("graphicsView")
 
         # self.toolbar = MyNavigationToolbar2QT.MyNavigationToolbar2QT(self.mycanvas, self.centralwidget)
@@ -221,10 +257,10 @@ class Ui_MainWindow(object):
         # self.verticalLayout_canvas_2.addWidget(self.graphicsView_2)
         self.mycanvas_2 = CanvasMatplotlib(width=4, height=5,
                                            dpi=100)  # QtWidgets.QGraphicsView(self.widget1)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-
-        self.mycanvas_2.setFont(font)
+        # font = QtGui.QFont()
+        # font.setPointSize(11)
+        #
+        # self.mycanvas_2.setFont(font)
         # self.mycanvas_1.setObjectName("graphicsView")
 
         # self.toolbar = MyNavigationToolbar2QT.MyNavigationToolbar2QT(self.mycanvas, self.centralwidget)
@@ -249,10 +285,10 @@ class Ui_MainWindow(object):
         # self.verticalLayout_canvas_4.addWidget(self.graphicsView_4)
         self.mycanvas_4 = CanvasMatplotlib(width=4, height=5,
                                            dpi=100)  # QtWidgets.QGraphicsView(self.widget1)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-
-        self.mycanvas_4.setFont(font)
+        # font = QtGui.QFont()
+        # # font.setPointSize(11)
+        #
+        # self.mycanvas_4.setFont(font)
         # self.mycanvas_1.setObjectName("graphicsView")
 
         # self.toolbar = MyNavigationToolbar2QT.MyNavigationToolbar2QT(self.mycanvas, self.centralwidget)
@@ -273,7 +309,7 @@ class Ui_MainWindow(object):
         self.mycanvas_3 = CanvasMatplotlib(width=4, height=5,
                                            dpi=100)  # QtWidgets.QGraphicsView(self.widget1)
         font = QtGui.QFont()
-        font.setPointSize(11)
+        # font.setPointSize(11)
 
         self.mycanvas_3.setFont(font)
         # self.mycanvas_1.setObjectName("graphicsView")
@@ -286,7 +322,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.addWidget(self.splitter_5)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 858, 22))
+        # self.menubar.setGeometry(QtCore.QRect(0, 0, 858, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -298,22 +334,52 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Solveurs de Riemann approchés (Rusanov, HLL et HLLC) "))
         self.label_domain_length.setText(_translate("MainWindow",
-                                                    "<html><head/><body><p><span style=\" color:#0000ff;\">Longueur du domaine :</span></p></body></html>"))
+                                                    "<html><head/><body><p><span style=\" color:#0000ff;\">Longueur "
+                                                    "du domaine :</span></p></body></html>"))
         self.label_number_cells.setText(_translate("MainWindow",
-                                                   "<html><head/><body><p><span style=\" color:#0000ff;\">Nombre de mailles :</span></p></body></html>"))
+                                                   "<html><head/><body><p><span style=\" color:#0000ff;\">Nombre de "
+                                                   "mailles :</span></p></body></html>"))
         self.label_cfl_condition.setText(_translate("MainWindow",
-                                                    "<html><head/><body><p><span style=\" color:#0000ff;\">Condition CFL :</span></p></body></html>"))
+                                                    "<html><head/><body><p><span style=\" color:#0000ff;\">Condition "
+                                                    "CFL :</span></p></body></html>"))
+
+        self.label_x0_condition.setText(_translate("MainWindow",
+                                                   "<html><head/><body><p><span style=\" color:#0000ff;\">Point de "
+                                                   "discontinuité x_0 :</span></p></body></html>"))
+        self.label_T_condition.setText(_translate("MainWindow",
+                                                  "<html><head/><body><p><span style=\" color:#0000ff;\">Temps "
+                                                  "final T :</span></p></body></html>"))
 
         self.label_initial_states.setText(_translate("MainWindow",
-                                                     "<html><head/><body><p><span style=\" color:#0000ff;\">Définition des états initiaux à gauche</span></p></body></html>"))
+                                                     "<html><head/><body><p><span style=\" "
+                                                     "color:#0000ff;\">Définition des états initiaux à "
+                                                     "gauche</span></p></body></html>"))
         self.label_initial_states_2.setText(_translate("MainWindow",
-                                                       "<html><head/><body><p><span style=\" color:#0000ff;\">Définition des états initiaux à droite</span></p></body></html>"))
-        self.label_initial_states_3.setText(_translate("MainWindow",
-                                                       "<html><head/><body><p><span style=\" color:#0000ff;\">Définition du temps final et le point de discontinuité </span></p></body></html>"))
+                                                       "<html><head/><body><p><span style=\" "
+                                                       "color:#0000ff;\">Définition des états initiaux à "
+                                                       "droite</span></p></body></html>"))
+        # self.label_initial_states_3.setText(_translate("MainWindow",
+        #                                                "<html><head/><body><p><span style=\" "
+        #                                                "color:#0000ff;\">Définition du temps final et le point de "
+        #                                                "discontinuité </span></p></body></html>"))
         self.label_type_solvers.setText(_translate("MainWindow",
-                                                   "<html><head/><body><p><span style=\" color:#0000ff;\">Type de solveur : </span></p></body></html>"))
+                                                   "<html><head/><body><p><span style=\" color:#0000ff;\">Type de "
+                                                   "solveur : </span></p></body></html>"))
+        self.comboBox_tests.setToolTip(_translate("MainWindow", "Cas test 1 :\n\tr_l = 1.0, u_l =0.0, p_l=1.0\n\tr_r = "
+                                                                "0.125, u_r =0.0, p_r=0.1\n\tL= 1.0, T= 0.2, x_0 = "
+                                                                "0.3, CFL =0.9\n"
+                                                                "Cas test 2 :\n\tr_l = 1.0, u_l =-2.0, p_l=0.4\n\tr_r "
+                                                                "= "
+                                                                "1.0, u_r =2.0, p_r=0.4\n\tL= 1.0, T= 0.15, x_0 = "
+                                                                "0.5, CFL =0.9\n"
+                                                                "Cas test 3 :\n\tr_l = 1.0, u_l =0.0, "
+                                                                "p_l=1000.0\n\tr_r = "
+                                                                "1.0, u_r =0.0, p_r=0.01\n\tL= 1.0, T= 0.012, x_0 = "
+                                                                "0.5, CFL =0.9"
+
+                                                  ))
         self.comboBox_type_solver.setItemText(0, _translate("MainWindow", "Rusanov"))
         self.comboBox_type_solver.setItemText(1, _translate("MainWindow", "HLL"))
         self.comboBox_type_solver.setItemText(2, _translate("MainWindow", "HLLC"))
