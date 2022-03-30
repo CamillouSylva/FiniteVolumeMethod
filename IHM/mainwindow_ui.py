@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
+import os
 
+from PyQt5.QtCore import QSize
+from PyQt5.QtGui import QIcon, QPixmap
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from FiniteVolumeMethod.IHM.canvas_matplotlib import CanvasMatplotlib
+
+file_path = os.path.abspath(os.path.dirname(__file__))
+icon_path = f"{os.path.dirname(file_path)}/resources/"
 
 
 class Ui_MainWindow(object):
@@ -47,7 +53,7 @@ class Ui_MainWindow(object):
         self.spinBox_L.setPrefix("")
         self.spinBox_L.setMinimum(0.1)
         self.spinBox_L.setMaximum(1000)
-        self.spinBox_L.setSingleStep(1)
+        # self.spinBox_L.setSingleStep(1)
         self.spinBox_L.setProperty("value", 1)
         self.spinBox_L.setSingleStep(0.01)
         self.spinBox_L.setDecimals(2)
@@ -214,6 +220,20 @@ class Ui_MainWindow(object):
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem2)
         self.verticalLayout_2.addLayout(self.horizontalLayout_3)
+
+        self.horizontalLayout_btn = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_btn.setObjectName("horizontalLayout_btn")
+        self.btn_run = QtWidgets.QPushButton(self.layoutWidget)
+        self.btn_run.setMaximumSize(QtCore.QSize(40, 40))
+        btn_size = QSize(30, 30)
+
+        icon_btn = QIcon()
+        icon_btn.addPixmap(
+            QPixmap(f"{icon_path}go_right.png"))
+        self.btn_run.setIcon(icon_btn)
+        self.btn_run.setIconSize(btn_size)
+        self.horizontalLayout_btn.addWidget(self.btn_run)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_btn)
         spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_2.addItem(spacerItem3)
         self.splitter_3 = QtWidgets.QSplitter(self.splitter_5)
@@ -387,6 +407,7 @@ class Ui_MainWindow(object):
         self.comboBox_tests.setItemText(0, _translate("MainWindow", "Cas test 1"))
         self.comboBox_tests.setItemText(1, _translate("MainWindow", "Cas test 2"))
         self.comboBox_tests.setItemText(2, _translate("MainWindow", "Cas test 3"))
+        self.btn_run.setToolTip(_translate("MainWindow", "Lancer le solveur"))
 
 
 if __name__ == "__main__":
