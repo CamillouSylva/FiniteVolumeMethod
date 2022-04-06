@@ -371,7 +371,7 @@ class Ui_MainWindow(object):
         self.comboBox_type_solver.setItemText(0, _translate("MainWindow", "Rusanov"))
         self.comboBox_type_solver.setItemText(1, _translate("MainWindow", "HLL"))
         self.comboBox_type_solver.setItemText(2, _translate("MainWindow", "HLLC"))
-        self.checkBox.setText(_translate("MainWindow", "Utiliser les tests prédifinis"))
+        self.checkBox.setText(_translate("MainWindow", "Utiliser les cas tests prédifinis"))
         self.comboBox_tests.setItemText(0, _translate("MainWindow", "Cas test 1"))
         self.comboBox_tests.setItemText(1, _translate("MainWindow", "Cas test 2"))
         self.comboBox_tests.setItemText(2, _translate("MainWindow", "Cas test 3"))
