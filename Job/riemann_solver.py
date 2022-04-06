@@ -273,18 +273,11 @@ class RiemannSolver:
                     mr = self.m[i]
                     Er = self.E[i]
                 # print("rl=", rl)
-                fr, fm, fE = self.compute_Fi(i, rl, ml, El, rr, mr, Er)
-                self.F[0, i] = fr
-                self.F[1, i] = fm
-                self.F[2, i] = fE
-            print(f"fr = {fr}")
-                
+                self.compute_Fi(i, rl, ml, El, rr, mr, Er)
 
             for i in range(0, self.Nx):
-                # self.compute_Ui(i, dt)
-                self.r[i] = self.r[i] - (dt / self.dx) * (self.F[0, i + 1] - self.F[0, i])  # densite
-                self.m[i] = self.m[i] - (dt / self.dx) * (self.F[1, i + 1] - self.F[1, i])  # moment
-                self.E[i] = self.E[i] - (dt / self.dx) * (self.F[2, i + 1] - self.F[2, i])
+                self.compute_Ui(i, dt)
+
                 # self.r[i] = self.r[i] - (dt / self.dx) * (Fr[i + 1] - Fr[i])  # densite
                 # self.m[i] = self.m[i] - (dt / self.dx) * (Fm[i + 1] - Fm[i])  # moment
                 # self.E[i] = self.E[i] - (dt / self.dx) * (FE[i + 1] - FE[i])

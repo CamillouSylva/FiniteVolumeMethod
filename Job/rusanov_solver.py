@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 from cmath import sqrt as complex_sqrt
-from riemann_solver import RiemannSolver
+from FiniteVolumeMethod.Job.riemann_solver import RiemannSolver
 
 
 class RusanovSolver(RiemannSolver):
@@ -47,20 +47,22 @@ class RusanovSolver(RiemannSolver):
         # self.fm[i] = Fi[1]
         # self.fE[i] = Fi[2]
 
-        # self.F[0, i] = Fi[0]
-        # # self.fr[i] =  Fi[0]
-        # self.F[1, i] = Fi[1]
-        # self.F[2, i] = Fi[2]
-        
-        return Fi[0], Fi[1], Fi[2]
+        self.F[0, i] = Fi[0]
+        # self.fr[i] =  Fi[0]
+        self.F[1, i] = Fi[1]
+        self.F[2, i] = Fi[2]
 
 
 if __name__ == "__main__":
     # RS = RusanovSolver(W_L=[1., 0., 1.], W_R=[0.125, 0, 0.1], T=0.2)
     RS = RusanovSolver(W_L=[1., -2., 0.4], W_R=[1, 2, 0.4], T=0.15, x_0=0.5)
-    RS.W_L.u = 99
-    print(RS.W_L.u)
+    # RS.W_L.u = 99
+    # print(RS.W_L.u)
 
     RS.solve()
     print(RS.W_L.u)
+    print(RS.fr)
+    print(RS.fE)
+    print(RS.fm)
+
     RS.plot()
