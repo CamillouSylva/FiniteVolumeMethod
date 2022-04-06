@@ -142,9 +142,33 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../ResultatsNumeriques/ResultatsNumeriques.html">
    4. Résultats numériques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ResultatsNumeriques/Notebook.html">
+     4.3. Résultats numériques
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Conclusion
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Conclusion/Conclusion.html">
+   5. Conclusion
   </a>
  </li>
 </ul>
@@ -416,7 +440,7 @@ Dans notre cas, on se restreint aux gaz parfaits : <span class="math notranslate
 <p>Or, par <a class="reference internal" href="#equation-derivee-particulaire">(1.2)</a>, on sait que :</p>
 <div class="math notranslate nohighlight">
 \[\frac{d}{dt} \int_{x_1(t)}^{x_2(t)} \rho\, u\, dx = \int_{x_1(t)}^{x_2(t)} \rho \frac{du}{dt}dx\]</div>
-<p>Donc, en utilisant aussi \eqref{formulation intégrale conservation du moment}, on obtient la version intégrale de la conservation du moment en lagrangien :</p>
+<p>Donc, en utilisant aussi <span class="xref std std-ref">formulation intégrale conservation du moment</span>, on obtient la version intégrale de la conservation du moment en lagrangien :</p>
 <div class="math notranslate nohighlight">
 \[\int_{x_1(t)}^{x_2(t)}\left(\rho \frac{du}{dt}+\frac{\partial p}{\partial x}\right)dx = 0 \, , \quad \text{pour tout volume de contrôle} \ I(t).\]</div>
 <p>c’est-à-dire :</p>

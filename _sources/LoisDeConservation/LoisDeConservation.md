@@ -168,7 +168,7 @@ Or, par {eq}`dérivée particulaire`, on sait que :
 :::{math}
 \frac{d}{dt} \int_{x_1(t)}^{x_2(t)} \rho\, u\, dx = \int_{x_1(t)}^{x_2(t)} \rho \frac{du}{dt}dx
 :::
-Donc, en utilisant aussi \eqref{formulation intégrale conservation du moment}, on obtient la version intégrale de la conservation du moment en lagrangien : 
+Donc, en utilisant aussi {ref}`formulation intégrale conservation du moment`, on obtient la version intégrale de la conservation du moment en lagrangien : 
 :::{math}
 \int_{x_1(t)}^{x_2(t)}\left(\rho \frac{du}{dt}+\frac{\partial p}{\partial x}\right)dx = 0 \, , \quad \text{pour tout volume de contrôle} \ I(t).
 :::
