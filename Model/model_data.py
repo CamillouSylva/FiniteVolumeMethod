@@ -176,6 +176,45 @@ class Model(QObject):
         self.type_solver_changed[str].emit(_type_solver)
         print("type de solveur modifié")
 
+    def test_case_1(self):
+        self.rl = 1.0
+        self.ul = 0.0
+        self.pl = 1.0
+
+        self.rr = 0.125
+        self.ur = 0.0
+        self.pr = 0.1
+
+        self.T = 0.2
+        self.x_0 = 0.3
+        self.L = 1.
+
+    def test_case_2(self):
+        self.rl = 1.0
+        self.ul = -2.0
+        self.pl = 0.4
+
+        self.rr = 1.0
+        self.ur = 2.0
+        self.pr = 0.4
+
+        self.T = 0.15
+        self.x_0 = 0.5
+        self.L = 1.
+
+    def test_case_3(self):
+        self.rl = 1.0
+        self.ul = 0.0
+        self.pl = 1000
+
+        self.rr = 1.0
+        self.ur = 0.0
+        self.pr = 0.01
+
+        self.T = 0.012
+        self.x_0 = 0.5
+        self.L = 1.
+
     def problem_to_solve(self):
         rl = self.rl
         ul = self.ul
