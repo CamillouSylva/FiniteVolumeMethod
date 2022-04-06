@@ -112,6 +112,18 @@ class MainController(QObject):  # QObject est nécessaire pour pouvoir utiliser 
         self._model.solve_problem()
         print(self._model.problem)
 
+    @pyqtSlot(int)
+    def choose_test_case(self, value: int):
+        index = value + 1
+        if index == 1:
+            self._model.test_case_1()
+        elif index == 2:
+            self._model.test_case_2()
+        elif index == 3:
+            self._model.test_case_3()
+        print(index)
+        print(self._model)
+
     # @pyqtSlot(str)
     # def update_graphics(self, type_solver):
     #     self._model.problem = type_solver
