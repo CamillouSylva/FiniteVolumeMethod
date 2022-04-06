@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Les solveurs de Riemann approchés Rusanov, HLL et HLLC &#8212; Méthodes volumes finis pour la résolution de la dynamique des gaz eulérienne et lagrangienne 1D</title>
+    <title>3. Les solveurs de Riemann approchés Rusanov, HLL et HLLC &#8212; Méthodes volumes finis pour la résolution de la dynamique des gaz eulérienne et lagrangienne 1D</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Résultats numériques" href="../ResultatsNumeriques/ResultatsNumeriques.html" />
-    <link rel="prev" title="Problème de Riemann associé aux équations d’Euler en 1D" href="../ProblemeRiemann/ProblemeRiemann.html" />
+    <link rel="next" title="4. Résultats numériques" href="../ResultatsNumeriques/ResultatsNumeriques.html" />
+    <link rel="prev" title="2. Problème de Riemann associé aux équations d’Euler en 1D" href="../ProblemeRiemann/ProblemeRiemann.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -102,13 +102,25 @@
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Lois de conservation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LoisDeConservation/LoisDeConservation.html">
+   1. Lois de conservation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Problème de Riemann associé aux équations d'Euler en 1D
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../ProblemeRiemann/ProblemeRiemann.html">
-   Problème de Riemann associé aux équations d’Euler en 1D
+   2. Problème de Riemann associé aux équations d’Euler en 1D
   </a>
  </li>
 </ul>
@@ -120,7 +132,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Les solveurs de Riemann approchés Rusanov, HLL et HLLC
+   3. Les solveurs de Riemann approchés Rusanov, HLL et HLLC
   </a>
  </li>
 </ul>
@@ -132,7 +144,24 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../ResultatsNumeriques/ResultatsNumeriques.html">
-   Résultats numériques
+   4. Résultats numériques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ResultatsNumeriques/ResultatsNumeriques.html">
+   4. Résultats numériques
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Conclusion
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Conclusion/Conclusion.html">
+   5. Conclusion
   </a>
  </li>
 </ul>
@@ -217,6 +246,39 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenu
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#les-solveurs-de-riemann-approche-rusanov-et-harten-lax-van-leer-hll">
+   3.1. Les solveurs de Riemann approché Rusanov et Harten-Lax-Van Leer (HLL)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#le-solveur-de-riemann-approche-hllc">
+   3.2. Le solveur de Riemann approché HLLC
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estimations-de-la-vitesse-des-ondes-directes">
+   3.3. Estimations de la vitesse des ondes directes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algorithmes-pour-les-flux-numeriques-des-solveurs-rusanov-hll-et-hllc">
+   3.4. Algorithmes pour les flux numériques des solveurs Rusanov, HLL et  HLLC
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditions-aux-bords-transmissives-dans-le-cas-des-equations-euler-unidimensionnelles">
+   3.5. Conditions aux bords transmissives dans le cas des équations Euler unidimensionnelles.
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -229,6 +291,39 @@
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contenu </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#les-solveurs-de-riemann-approche-rusanov-et-harten-lax-van-leer-hll">
+   3.1. Les solveurs de Riemann approché Rusanov et Harten-Lax-Van Leer (HLL)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#le-solveur-de-riemann-approche-hllc">
+   3.2. Le solveur de Riemann approché HLLC
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estimations-de-la-vitesse-des-ondes-directes">
+   3.3. Estimations de la vitesse des ondes directes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algorithmes-pour-les-flux-numeriques-des-solveurs-rusanov-hll-et-hllc">
+   3.4. Algorithmes pour les flux numériques des solveurs Rusanov, HLL et  HLLC
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditions-aux-bords-transmissives-dans-le-cas-des-equations-euler-unidimensionnelles">
+   3.5. Conditions aux bords transmissives dans le cas des équations Euler unidimensionnelles.
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -236,18 +331,339 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="les-solveurs-de-riemann-approches-rusanov-hll-et-hllc">
-<h1>Les solveurs de Riemann approchés Rusanov, HLL et HLLC<a class="headerlink" href="#les-solveurs-de-riemann-approches-rusanov-hll-et-hllc" title="Permalink to this headline">¶</a></h1>
-<p>On considère le problème avec conditions initiales et conditions aux bords transmissives suivant :</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\left\{ 
+<span id="content-solveurs-labels"></span><h1><span class="section-number">3. </span>Les solveurs de Riemann approchés Rusanov, HLL et HLLC<a class="headerlink" href="#les-solveurs-de-riemann-approches-rusanov-hll-et-hllc" title="Permalink to this headline">¶</a></h1>
+<p>On considère le problème avec condition initiale et conditions aux bords transmissives (voir la section <a class="reference internal" href="#content-bc-labels"><span class="std std-numref">Section 3.5</span></a>) suivant :</p>
+<div class="math notranslate nohighlight" id="equation-probleme-general">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-probleme-general" title="Permalink to this equation">¶</a></span>\[\begin{split}\left\{ 
 \begin{array}{l l l}
-\displaystyle \frac{\partial \pmb{U}}{\partial t} + \frac{\partial \pmb{F(U)}}{\partial x} = \pmb{0} \, ,\\[4mm] 
+\displaystyle \dfrac{\partial \pmb{U}}{\partial t} + \dfrac{\partial \pmb{F(U)}}{\partial x} = \pmb{0} \, ,\\[4mm] 
 \displaystyle \pmb{U}(x,0) = \pmb{U}^{(0)}(x) \quad \forall \ x \in [x_L;x_R] \, ,\\ 
 \end{array} 
+\right.\end{split}\]</div>
+<p>où <span class="math notranslate nohighlight">\(\pmb{U}\)</span> le vecteur des variables conservatives et <span class="math notranslate nohighlight">\(\pmb{U^{(0)}}\)</span> défini comme dans <a class="reference internal" href="../ProblemeRiemann/ProblemeRiemann.html#equation-condition-init">(2.6)</a>.</p>
+<p>Au lieu d’utiliser toutes les situations possibles on va se restreindre à des cas plus simples. Considérons la solution exacte du problème de Riemann <a class="reference internal" href="#equation-probleme-general">(3.1)</a> dans le cas des équations d’Euler 1D schématisée sur la figure \ref{solution exacte}. A
+Ici on simplifie en considérant que les ondes non linéaires sont des chocs.  <span class="math notranslate nohighlight">\(S_L\)</span> et <span class="math notranslate nohighlight">\(S_R\)</span> correspondent aux vitesse de propagation des chocs qui perturbent les états initiaux <span class="math notranslate nohighlight">\(\pmb{U_L}\)</span> et <span class="math notranslate nohighlight">\(\pmb{U_R}\)</span> respectivement. Sur le schéma on considère le cas où <span class="math notranslate nohighlight">\(S_L &lt; 0 &lt; S_R\)</span>.</p>
+<div class="figure align-default" id="solutionexacte">
+<img alt="../_images/fig_sol.png" src="../_images/fig_sol.png" />
+<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Problème de Riemann complet pour les équations d’Euler 1D, avec volume de contrôle <span class="math notranslate nohighlight">\([x_L;x_R] \times [0;T]\)</span> dans le cas où <span class="math notranslate nohighlight">\(S_L &lt; 0 &lt; S_R\)</span>.</span><a class="headerlink" href="#solutionexacte" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="les-solveurs-de-riemann-approche-rusanov-et-harten-lax-van-leer-hll">
+<h2><span class="section-number">3.1. </span>Les solveurs de Riemann approché Rusanov et Harten-Lax-Van Leer (HLL)<a class="headerlink" href="#les-solveurs-de-riemann-approche-rusanov-et-harten-lax-van-leer-hll" title="Permalink to this headline">¶</a></h2>
+<p>Harten, Lax et Van Leer \cite{[164]} ont défini le solveur de Riemann approché suivant :</p>
+<div class="math notranslate nohighlight" id="equation-solution-approchee-uhll">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-solution-approchee-uhll" title="Permalink to this equation">¶</a></span>\[\begin{split}\pmb{U}_h(x,t) = \left\{\begin{array}{lll}
+\pmb{U_L} \quad \quad \text{si} \; \dfrac{x}{t} \leq S_L \\
+\pmb{U}^{hll} \quad \quad \text{si} \; S_L \leq \dfrac{x}{t} \leq S_R \\ 
+\pmb{U_R} \quad \quad \text{si} \; \dfrac{x}{t} \geq S_R 
+\end{array}
+\right. \end{split}\]</div>
+<p>Les vitesses <span class="math notranslate nohighlight">\(S_L\)</span> et <span class="math notranslate nohighlight">\(S_R\)</span> sont supposées connues et l’état intermédiaire <span class="math notranslate nohighlight">\(\pmb{U}^{hll}\)</span> constant.</p>
+<p>La structure de la solution approchée du problème de Riemann \eqref{problème général}, appelée \textbf{solveur HLL} de Riemann est schématisée sur la figure \ref{solution hll}.</p>
+<div class="figure align-default" id="solution-hll">
+<img alt="../_images/figHLL.png" src="../_images/figHLL.png" />
+<p class="caption"><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Structure du solveur de Riemann approché HLL</span><a class="headerlink" href="#solution-hll" title="Permalink to this image">¶</a></p>
+</div>
+<p>Cette approximation présente trois états constants séparés par deux ondes non linéaires de vitesses <span class="math notranslate nohighlight">\(S_L\)</span> et <span class="math notranslate nohighlight">\(S_R\)</span> respectivement. La zone étoilée est décrite par un unique état constant <span class="math notranslate nohighlight">\(\pmb{U}^{hll}\)</span> que nous allons définir dans la suite.</p>
+<p><strong>Formulations intégrales du problème de Riemann</strong></p>
+<p>La formulation intégrale des lois de conservation dans \eqref{problème général}, dans le volume de contrôle <span class="math notranslate nohighlight">\([x_L;x_R] \times [0;T]\)</span> est : \</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{d}{dt} \int_{x_L}^{x_R} \pmb{U}(x,t)dx = - \int_{x_L}^{x_R} \partial_x \pmb{F(U}(x,t))dx = -\pmb{F(U}(x_R,t)) + \pmb{F(U}(x_L,t))\]</div>
+<div class="math notranslate nohighlight" id="equation-integrale">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-integrale" title="Permalink to this equation">¶</a></span>\[\Rightarrow \int_{x_L}^{x_R} \pmb{U}(x,T)dx = \int_{x_L}^{x_R} \pmb{U}(x,0)dx + \int_{0}^{T} \pmb{F(U}(x_L,t))dt - \int_{0}^{T} \pmb{F(U}(x_R,t))dt \]</div>
+<p>Puis en utilisant la condition initiale à deux états <span class="xref std std-ref">condition_init</span> on a :</p>
+<div class="math notranslate nohighlight">
+\[\int_{x_L}^{x_R} \pmb{U}(x,T)dx = \int_{x_L}^{0} \pmb{U_L}dx + \int_{0}^{x_R} \pmb{U_R}dx + \int_{0}^{T} \pmb{F(U_L)}dt - \int_{0}^{T} \pmb{F(U_R})dt\]</div>
+<p>i.e</p>
+<div class="math notranslate nohighlight" id="equation-condition-de-consistance">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-condition-de-consistance" title="Permalink to this equation">¶</a></span>\[\int_{x_L}^{x_R} \pmb{U}(x,T)dx = x_R \pmb{U_R} - x_L \pmb{U_L} + T(\pmb{F_L} - \pmb{F_R})\]</div>
+<p>où <span class="math notranslate nohighlight">\(\pmb{F_L}=\pmb{F(U_L)}\)</span> et <span class="math notranslate nohighlight">\(\pmb{F_R}=\pmb{F(U_R)}\)</span> les flux à gauche et à droite respectivement.</p>
+<p>Cette relation ainsi obtenue correspond à la <strong>condition de consistance</strong> du schéma numérique que l’on définira ultérieurement (section \ref{VF}).</p>
+<p>Ensuite, en écrivant l’intégrale du terme de gauche de l’égalité <span class="xref std std-ref">integrale</span> tel que :</p>
+<div class="math notranslate nohighlight">
+\[\int_{x_L}^{x_R} \pmb{U}(x,T)dx = \int_{x_L}^{T S_L} \pmb{U}(x,T)dx  + \int_{T S_L}^{T S_R} \pmb{U}(x,T)dx + \int_{T S_R}^{x_R} \pmb{U}(x,T)dx\]</div>
+<p>Et en évaluant la première et la troisième intégrale du terme de droite,</p>
+<div class="math notranslate nohighlight">
+\[\int_{x_L}^{x_R} \pmb{U}(x,T)dx = \int_{x_L}^{T S_L} \pmb{U_L} dx + \int_{T S_L}^{T S_R} \pmb{U}(x,T)dx + \int_{T S_R}^{x_R} \pmb{U_R} dx \]</div>
+<p>d’où :</p>
+<div class="math notranslate nohighlight" id="equation-egalite2">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-egalite2" title="Permalink to this equation">¶</a></span>\[\int_{x_L}^{x_R} \pmb{U}(x,T)dx = \int_{T S_L}^{T S_R} \pmb{U}(x,T)dx + (T S_L - x_L)\pmb{U_L} + (x_R - T S_R)\pmb{U_R}\]</div>
+<p>Puis en utilisant <span class="xref std std-ref">condition de consistance</span> et <span class="xref std std-ref">égalité2</span>, on obtient :</p>
+<div class="math notranslate nohighlight" id="equation-derniere-equation">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-derniere-equation" title="Permalink to this equation">¶</a></span>\[\int_{T S_L}^{T S_R} \pmb{U}(x,T)dx = T(S_R \pmb{U_R} - S_L \pmb{U_L} + \pmb{F_L} - \pmb{F_R})\]</div>
+<p>Enfin, en divisant par <span class="math notranslate nohighlight">\(T(S_R-S_L)\)</span> (base du triangle formé par les deux ondes non linéaires de la solution exacte au temps <span class="math notranslate nohighlight">\(T&gt;0\)</span>) on a :</p>
+<div class="math notranslate nohighlight" id="equation-integrale-moyenne">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-integrale-moyenne" title="Permalink to this equation">¶</a></span>\[\dfrac{1}{T(S_R-S_L)} \int_{T S_L}^{T S_R} \pmb{U}(x,T)dx = \dfrac{S_R \pmb{U_R} - S_L \pmb{U_L} + \pmb{F_L} - \pmb{F_R}}{S_R - S_L}\]</div>
+<p>Ainsi, la valeur moyenne de la solution exacte du problème de Riemann entre l’onde la plus lente et l’onde la plus rapide à l’instant <span class="math notranslate nohighlight">\(T\)</span> est une constante connue mais ce, seulement si les vitesses <span class="math notranslate nohighlight">\(S_L\)</span> et <span class="math notranslate nohighlight">\(S_R\)</span> le sont. Cette constante est exactement <span class="math notranslate nohighlight">\(\pmb{U}^{hll}\)</span> :</p>
+<div class="math notranslate nohighlight" id="equation-uhll">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-uhll" title="Permalink to this equation">¶</a></span>\[\boxed{\pmb{U}^{hll} = \dfrac{S_R \pmb{U_R} - S_L \pmb{U_L} + \pmb{F_L} - \pmb{F_R}}{S_R - S_L}}\]</div>
+<p>On souhaite maintenant trouver le flux qui lui est associé.
+En appliquant la formulation intégrale des lois de conservation sur la portion de gauche de la figure \ref{solution exacte} avec le volume de contrôle <span class="math notranslate nohighlight">\([x_L;0] \times [0;T]\)</span>, on obtient :</p>
+<div class="math notranslate nohighlight">
+\[\int_{x_L}^{0} \pmb{U}(x,T)dx = \int_{x_L}^{0} \pmb{U}(x,0)dx + \int_{0}^{T} \pmb{F(U}(x_L,t))dt - \int_{0}^{T} \pmb{F(U}(0,t))dt\]</div>
+<div class="math notranslate nohighlight">
+\[\iff \int_{x_L}^{T S_L} \pmb{U}(x,T)dx + \int_{T S_L}^{0} \pmb{U}(x,T)dx = \int_{0}^{T} \pmb{U_L}dx + \int_{0}^{T}\pmb{F(U_L)}dt - \int_{0}^{T}\pmb{F_{0L}}dt\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+\Rightarrow \int_{T S_L}^{0} \pmb{U}(x,T)dx &amp;= - \int_{x_L}^{T S_L} \pmb{U}(x,T)dx + \int_{x_L}^{0} \pmb{U_L} dx + T(\pmb{F_L} - \pmb{F_{0L}}) \\ 
+&amp;= -\int_{0}^{T S_L} \pmb{U}(x,T)dx + T(\pmb{F_L} - \pmb{F_{0L}}) \\ 
+&amp;= -\int_{0}^{T S_L} \pmb{U_L} dx + T(\pmb{F_L} - \pmb{F_{0L}})
+\end{align*} \end{split}\]</div>
+<p>D’où,</p>
+<div class="math notranslate nohighlight" id="equation-eq-f0l">
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-eq-f0l" title="Permalink to this equation">¶</a></span>\[\int_{T S_L}^{0} \pmb{U}(x,T)dx = - T S_L \pmb{U_L} + T(\pmb{F_L} - \pmb{F_{0L}})\]</div>
+<p>où <span class="math notranslate nohighlight">\(\pmb{F_{0L}}\)</span> est le flux <span class="math notranslate nohighlight">\(\pmb{F(U)}\)</span> le long de l’axe t. Puis en isolant <span class="math notranslate nohighlight">\(\pmb{F_{0L}}\)</span> dans <span class="xref std std-ref">éq f0L</span> on a :</p>
+<div class="math notranslate nohighlight" id="equation-f0l">
+<span class="eqno">(3.10)<a class="headerlink" href="#equation-f0l" title="Permalink to this equation">¶</a></span>\[\pmb{F_{0L}} = \pmb{F_L} - S_L \pmb{U_L} - \dfrac{1}{T} \int_{T S_L}^{0} \pmb{U}(x,T)dx\]</div>
+<p>En procédant de la même manière; en évaluant la formulation intégrale sur le volume de contrôle <span class="math notranslate nohighlight">\([0;x_R] \times [0;T]\)</span> on a :</p>
+<div class="math notranslate nohighlight">
+\[\int_{T S_R}^{0} \pmb{U}(x,T)dx = -T S_R \pmb{U_R} + T(\pmb{F_R} - \pmb{F_{0R}})\]</div>
+<p>et</p>
+<div class="math notranslate nohighlight" id="equation-f0r">
+<span class="eqno">(3.11)<a class="headerlink" href="#equation-f0r" title="Permalink to this equation">¶</a></span>\[\pmb{F_{0R}} = \pmb{F_R} - S_R \pmb{U_R} + \dfrac{1}{T} \int_{0}^{T S_R} \pmb{U}(x,T)dx\]</div>
+<p>On remarque que <span class="math notranslate nohighlight">\(\pmb{F_{0L}} = \pmb{F_{0R}}\)</span> ; cela provient de la condition de consistance <span class="xref std std-ref">condition de consistance</span> établie précédemment.</p>
+<p>De plus, toutes les relations que l’on vient de trouver sont exactes car on a supposé la solution exacte du problème de Riemann.</p>
+<p>Le flux correspondant <span class="math notranslate nohighlight">\(\pmb{F}^{hll}\)</span> à <span class="math notranslate nohighlight">\(\pmb{U}^{hll}\)</span> le long de l’axe <span class="math notranslate nohighlight">\(t\)</span> se trouve à l’aide des égalités \eqref{f0L} ou <span class="xref std std-ref">f0R</span> en remplaçant la solution exacte <span class="math notranslate nohighlight">\(\pmb{U}\)</span> sous l’intégrale par la solution approchée <span class="math notranslate nohighlight">\(\pmb{U}_h\)</span> définie ci-dessus dans <span class="xref std std-ref">solution approchée uhll</span>.</p>
+<p>Notons que nous ne prenons pas <span class="math notranslate nohighlight">\(\pmb{F}^{hll} = \pmb{F(U}^{hll})\)</span>. Le cas où <span class="math notranslate nohighlight">\(S_L &lt; 0 &lt; S_R\)</span> sera le plus compliqué à étudier. Pour définir <span class="math notranslate nohighlight">\(\pmb{F}^{hll}\)</span>, on remplace l’intégrande de <span class="xref std std-ref">f0L</span> ou <span class="xref std std-ref">f0R</span> par <span class="math notranslate nohighlight">\(\pmb{U}^{hll}\)</span> défini dans <span class="xref std std-ref">uhll</span>. En utilisant, l’égalité <span class="xref std std-ref">f0L</span> par exemple :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+\pmb{F}^{hll} &amp;= \pmb{F_L} - S_L \pmb{U_L} - \dfrac{1}{T} \int_{T S_L}^{0} \pmb{U}_h(x,T)dx \\ 
+&amp;= \pmb{F_L} - S_L \pmb{U_L} - \dfrac{1}{T} \int_{T S_L}^{0} \pmb{U}^{hll} dx \\
+&amp;= \pmb{F_L} - S_L \pmb{U_L} - S_L \pmb{U}^{hll}
+\end{align*}\end{split}\]</div>
+<p>On obtient, avec l’égalité <span class="xref std std-ref">f0L</span> l’expression du flux associé à l’état intermédiare <span class="math notranslate nohighlight">\(\pmb{U}^{hll}\)</span> :</p>
+<div class="math notranslate nohighlight" id="equation-fhll-avec-f0l">
+<span class="eqno">(3.12)<a class="headerlink" href="#equation-fhll-avec-f0l" title="Permalink to this equation">¶</a></span>\[\pmb{F}^{hll} = \pmb{F_L} - S_L(\pmb{U_L} - \pmb{U}^{hll})\]</div>
+<p>Ou, en utilisant l’égalité <span class="xref std std-ref">f0R</span> :</p>
+<div class="math notranslate nohighlight" id="equation-fhll-avec-f0r">
+<span class="eqno">(3.13)<a class="headerlink" href="#equation-fhll-avec-f0r" title="Permalink to this equation">¶</a></span>\[\pmb{F}^{hll} = \pmb{F_R} - S_R(\pmb{U_R} - \pmb{U}^{hll})\]</div>
+<p>Remarquons que <span class="xref std std-ref">fhll avec f0L</span> et <span class="xref std std-ref">fhll avec f0R</span> s’obtiennent aussi en appliquant les relations de Rankine-Hugoniot à travers les ondes de gauche et de droite respectivement.</p>
+<p>En effet, pour l’onde de gauche on a :</p>
+<div class="math notranslate nohighlight">
+\[\pmb{F}^{hll} - \pmb{F_L} = S_L(\pmb{U}^{hll} - \pmb{U_L}) \iff \pmb{F}^{hll} = \pmb{F_L} - S_L(\pmb{U_L} - \pmb{U}^{hll})\]</div>
+<p>qui correspond exactement à \eqref{fhll avec f0L}.</p>
+<p>Finalement, en remplaçant <span class="math notranslate nohighlight">\(\pmb{U}^{hll}\)</span> (voir \eqref{uhll}) dans <span class="xref std std-ref">fhll avec f0L</span> :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+\pmb{F}^{hll} &amp;= \pmb{F_L} - S_L \left(\pmb{U_L} - \dfrac{S_R \pmb{U_R} - S_L \pmb{U_L} + \pmb{F_L} - \pmb{F_R}}{S_R - S_L} \right) \\ 
+	&amp;= \pmb{F_L} - S_L \left( \dfrac{\pmb{U_L}(S_R - S_L) - S_R \pmb{U_R} + S_L \pmb{U_L} - \pmb{F_L} + \pmb{F_R}}{S_R - S_L} \right) \\ 
+    &amp;= \dfrac{\pmb{F_L}(S_R - S_L) - \pmb{U_L} S_R S_L + \pmb{U_R} S_R S_L + \pmb{F_L} S_L - \pmb{F_R} S_L}{S_R - S_L}
+\end{align*}\end{split}\]</div>
+<p>On obtient alors :</p>
+<div class="math notranslate nohighlight">
+\[\boxed{\pmb{F}^{hll} = \dfrac{S_R \pmb{F_L} - S_L \pmb{F_R} + S_L S_R(\pmb{U_R} - \pmb{U_L)}}{S_R - S_L} } \]</div>
+<p>Ainsi, le flux associé à la solution approchée <span class="math notranslate nohighlight">\(\pmb{U}_h\)</span> est donné par :</p>
+<div class="math notranslate nohighlight" id="equation-flux-hll">
+<span class="eqno">(3.14)<a class="headerlink" href="#equation-flux-hll" title="Permalink to this equation">¶</a></span>\[\begin{split}\pmb{F}^{HLL} = \left\{
+\begin{array}{lll}
+\pmb{F_L} \quad \text{si} \; 0 \leq S_L \\ 
+\dfrac{S_R \pmb{F_L} - S_L \pmb{F_R} + S_L S_R(\pmb{U_R} - \pmb{U_L})}{S_R - S_L} \quad \text{si} \; S_L \leq 0 \leq S_R \\
+\pmb{F_R} \quad \text{si} \;  0 \geq S_R 
+\end{array}
+\right.\end{split}\]</div>
+<p>Le solveur de Rusanov \cite{[291]} est un cas particulier du solveur HLL. En effet, en prenant <span class="math notranslate nohighlight">\(S_L=-S^+\)</span> et <span class="math notranslate nohighlight">\(S_R=S^+\)</span>, avec <span class="math notranslate nohighlight">\(S^+\)</span> une vitesse positive connue, le solveur de Riemann approché Rusanov \cite{[291]} est défini par :</p>
+<div class="math notranslate nohighlight" id="equation-solution-approchee-urusanov">
+<span class="eqno">(3.15)<a class="headerlink" href="#equation-solution-approchee-urusanov" title="Permalink to this equation">¶</a></span>\[\begin{split}\pmb{U}_h(x,t) = \left\{\begin{array}{lll}
+\pmb{U_L} \quad \quad \text{si} \; \dfrac{x}{t} \leq -S^+ \\
+\pmb{U}^{*} \quad \quad \text{si} \; -S^+ \leq \dfrac{x}{t} \leq S^+ \\ 
+\pmb{U_R} \quad \quad \text{si} \; \dfrac{x}{t} \geq S^+ 
+\end{array}
+\right. \end{split}\]</div>
+<p>On donne la structure de la solution approché au problème de Riemann <span class="xref std std-ref">problème général</span>, c’est-à-dire du solveur <strong>Rusanov</strong>, sur la figure <a class="reference internal" href="#solutionrusanov"><span class="std std-numref">Fig. 3.3</span></a> :</p>
+<div class="figure align-default" id="solutionrusanov">
+<img alt="../_images/figRusanov.png" src="../_images/figRusanov.png" />
+<p class="caption"><span class="caption-number">Fig. 3.3 </span><span class="caption-text">Structure du solveur de Riemann approché Rusanov</span><a class="headerlink" href="#solutionrusanov" title="Permalink to this image">¶</a></p>
+</div>
+<p>Et le flux associé à la solution <span class="math notranslate nohighlight">\(\pmb{U}_h\)</span> est donné par :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\pmb{F}^{Rusa} = \left\{
+\begin{array}{lll}
+\pmb{F_L} \quad \text{si} \; 0 \leq -S^+ \\ 
+\dfrac{1}{2}(\pmb{F_L} + \pmb{F_R}) - \dfrac{1}{2} S^+(\pmb{U_R} - \pmb{U_L}) \quad \text{si} \; -S^+ \leq 0 \leq S^+ \\
+\pmb{F_R} \quad \text{si} \;  0 \geq S^+ 
+\end{array}
+\right.\end{split}\]</div>
+<p>Or, comme <span class="math notranslate nohighlight">\(S^+ \geq 0\)</span>, seul le cas où  <span class="math notranslate nohighlight">\(-S^+ \leq 0 \leq S^+\)</span> se produit et donc le flux de Rusanov \cite{[291]} se réduit à :</p>
+<div class="math notranslate nohighlight" id="equation-flux-rusanov">
+<span class="eqno">(3.16)<a class="headerlink" href="#equation-flux-rusanov" title="Permalink to this equation">¶</a></span>\[\pmb{F}^{Rusa} = \dfrac{1}{2}(\pmb{F_L} + \pmb{F_R}) - \dfrac{1}{2} S^+(\pmb{U_R} - \pmb{U_L})\]</div>
+<p>Étant donné un algorithme calculant les vitesses <span class="math notranslate nohighlight">\(S_L\)</span> et <span class="math notranslate nohighlight">\(S_R\)</span>, on a un flux numérique approché pour la forme conservative <span class="xref std std-ref">formule conservative </span>du schéma de Godunov \cite{[145]}. Il existe des estimations des vitesses <span class="math notranslate nohighlight">\(S_L\)</span> et <span class="math notranslate nohighlight">\(S_R\)</span> que nous verrons dans la section <a class="reference internal" href="#content-estimationsvitesse-labels"><span class="std std-numref">Section 3.3</span></a>. Harten, Lax et Van Leer \cite{[164]} ont montré que le schéma de Godunov <span class="xref std std-ref">formule conservative</span>, <span class="xref std std-ref">flux hll</span> s’il converge, converge vers la solution faible des lois de conservation. Ils prouvèrent que la solution convergente est également la solution physique des lois de conservation. Leurs résultats sont applicables à bon nombre de solveurs de Riemann approchés. L’un des critères est la consistance avec la formulation intégrale des lois de conservation. En fait, une solution approchée <span class="math notranslate nohighlight">\(\pmb{U}_h(x,t)\)</span> sera consistante si dans la condition de consistance <span class="xref std std-ref">condition de consistance</span>, le terme de droite reste inchangé.</p>
+<p>Un inconvénient du schéma HLL vient de la discontinuité de contact d’équation <span class="math notranslate nohighlight">\(x=u\)</span> schématisée sur la figure <a class="reference internal" href="../ProblemeRiemann/ProblemeRiemann.html#fig"><span class="std std-numref">Fig. 2.3</span></a>. On remarque que dans <span class="xref std std-ref">intégrale moyenne</span>, on ne prend pas en considération les variations spatiales de la solution du problème de Riemann dans la zone étoilée. Tout ce qui compte est la valeur moyenne de la solution entre les deux ondes non linéaires à l’instant <span class="math notranslate nohighlight">\(T&gt;0\)</span>. Harten, Lax et Van Leer \cite{[164]} évoquent une correction de ce défaut du schéma HLL en ajoutant l’onde manquante c’est-à-dire la discontinuité de contact.</p>
+<p>Toro, Spence et Speares \cite{[380]} ont proposé le prétendu <strong>schéma HLLC</strong> où C désigne Contact. Dans ce schéma l’onde du milieu manquante est placée dans la structure du solveur de Riemann approché HLLC.</p>
+</div>
+<div class="section" id="le-solveur-de-riemann-approche-hllc">
+<h2><span class="section-number">3.2. </span>Le solveur de Riemann approché HLLC<a class="headerlink" href="#le-solveur-de-riemann-approche-hllc" title="Permalink to this headline">¶</a></h2>
+<p>On considère encore le cas simplifié de deux ondes de choc à gauche et à droite respectivement.</p>
+<p>En fait, le schéma \textbf{HLLC} est une modification du schéma HLL : on lui ajoute la discontinuité de contact manquante.</p>
+<p>Considérons la structure de la solution du problème de Riemann à deux ondes (seules les ondes non linéaires) contenue dans un volume de contrôle <span class="math notranslate nohighlight">\([x_L; x_R]\times[0\,; T]\)</span> suffisamment large comme schématisé sur la figure <a class="reference internal" href="#solution-hll"><span class="std std-ref">Structure du solveur de Riemann approché HLL</span></a>.
+À cela on ajoute une troisième onde au milieu de vitesse <span class="math notranslate nohighlight">\(S^*\)</span> correspondant à la valeur propre <span class="math notranslate nohighlight">\(\lambda_2 = u\)</span> et on a le système d’ondes schématisé sur la figure <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig_hllc</span></code> suivante :</p>
+<div class="figure align-default" id="fig-hllc">
+<img alt="../_images/HLLC.png" src="../_images/HLLC.png" />
+<p class="caption"><span class="caption-number">Fig. 3.4 </span><span class="caption-text">Structure du solveur de Riemann approché HLLC</span><a class="headerlink" href="#fig-hllc" title="Permalink to this image">¶</a></p>
+</div>
+<p>La solution dans la zone étoilée se compose maintenant non plus d’un unique état constant mais de deux états constants <span class="math notranslate nohighlight">\( \pmb{U_{L}^*}\)</span> et <span class="math notranslate nohighlight">\( \pmb{U_{R}^*}\)</span> .</p>
+<p>Le solveur de Riemann approché HLLC est donné par :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\pmb{U}_h(x,t) = \left\{ 
+\begin{array}{l l}
+  \pmb{U_L} &amp; \quad \text{si\, $\frac{x}{t} \leq S_L$}\\
+  \pmb{U_{L}^*}  &amp; \quad \text{si\, $S_{L} \leq \frac{x}{t} \leq S^{*}$} \quad,\\ 
+   \pmb{U_{R}^*}  &amp; \quad \text{si\, $S^{*} \leq \frac{x}{t} \leq S_R$} \quad,\\ 
+ \pmb{U_R} &amp; \quad \text{si\, $\frac{x}{t} \geq S_R$} \\ \end{array} \right.\\\end{split}\]</div>
+<p>Le flux HLLC pour la méthode approximative de Godunnov \cite{[145]} peut être écrit comme suit:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\pmb{F}^{HLLC}  = \left\{ 
+\begin{array}{c c}
+  \pmb{F_L} &amp; \quad \text{si\, $0 \leq S_L$}\\
+  \pmb{F_{L}^*} = \pmb{F_L} + S_L (\pmb{U_{L}^*} - \pmb{U_{L}}) &amp; \quad \text{si\, $S_{L} \leq 0 \leq S^{*}$} \quad,\\ 
+   \pmb{F_{R}^*} = \pmb{F_R} + S_R (\pmb{U_{R}^*} - \pmb{U_{R}}) &amp; \quad \text{si\, $S^{*} \leq 0 \leq S_R$} \quad,\\ 
+ \pmb{F_R} &amp; \quad \text{si\, $0 \geq S_R$} \\ \end{array} \right. \\\end{split}\]</div>
+<p>avec <span class="math notranslate nohighlight">\(K=L\)</span> ou <span class="math notranslate nohighlight">\(K=R\)</span> :</p>
+<div class="math notranslate nohighlight" id="equation-u-k-etoile">
+<span class="eqno">(3.17)<a class="headerlink" href="#equation-u-k-etoile" title="Permalink to this equation">¶</a></span>\[\begin{split}      \begin{aligned}        
+        \pmb{U_{K}^*} = \rho_K \left(\frac{S_K - u_K}{S_K - S^*} \right)
+\left[
+\begin{array}{c c c}
+1\\
+S^*\\
+\frac{E_K}{\rho_K} + (S^* - u_K) \left[S^* + \frac{p_K}{\rho_K \left(S_K - u_K\right)} \right]
+\end{array}
+\right]
+      \end{aligned}\end{split}\]</div>
+<p>où  <span class="math notranslate nohighlight">\(u_K\)</span> est la vitesse particulaire et <span class="math notranslate nohighlight">\(S^*\)</span> la vitesse de l’onde de contact.</p>
+</div>
+<div class="section" id="estimations-de-la-vitesse-des-ondes-directes">
+<span id="content-estimationsvitesse-labels"></span><h2><span class="section-number">3.3. </span>Estimations de la vitesse des ondes directes<a class="headerlink" href="#estimations-de-la-vitesse-des-ondes-directes" title="Permalink to this headline">¶</a></h2>
+<p>Estimer les vitesses minimale et maximale du signal présentes dans la solution du problème de Riemann consiste à trouver les vitesses d’onde <span class="math notranslate nohighlight">\(S_L\)</span> et <span class="math notranslate nohighlight">\(S_R\)</span>.</p>
+<p>Davis \cite{[103]} a proposé les estimations suivantes :</p>
+<div class="math notranslate nohighlight">
+\[\ S_L=u_L-a_L,\quad S_R=u_R+a_R\]</div>
+<div class="math notranslate nohighlight">
+\[\ \text{et} \quad S_L=\min(u_L-a_L, u_R-a_R), \quad S_R=\max(u_L+a_L, u_R+a_R)\]</div>
+<p>Supposons maintenant que pour un problème de Riemann donné, nous puissions identifier une vitesse positive <span class="math notranslate nohighlight">\(S^+\)</span>. En choisissant <span class="math notranslate nohighlight">\(S_L\)</span> = <span class="math notranslate nohighlight">\(-S^+\)</span> et <span class="math notranslate nohighlight">\(S_R=S^+\)</span> on se place comme dans le cas particulier du solveur Rusanov \cite{[291]}. Dans ce cas, pour l’estimation de la vitesse <span class="math notranslate nohighlight">\(S^+\)</span>, Davis \cite{[103]} a considéré :</p>
+<div class="math notranslate nohighlight">
+\[\ S^+ = \max{ \, \left\{ |u_L - a_L| \, , \, |u_R-a_R| \, , \, |u_L + a_L| \, , \, |u_R + a_R|\right\} \, } \]</div>
+<p>La vitesse ci-dessus est inférieure ou égale à:</p>
+<div class="math notranslate nohighlight">
+\[\ S^+ = \max{\left\{ |u_L| + a_L\, ,\,|u_R | + a_R \right\}} \]</div>
+<p>Ce choix est susceptible de produire  un schéma plus robuste et est également plus simple que le choix de Davis.</p>
+<p>## Estimations de la vitesse d’onde en fonction de la pression</p>
+<p>Il existe plusieurs moyens de calculer la vitesse <span class="math notranslate nohighlight">\(S^*\)</span> dans la région étoilée.
+On se limitera au calcul de la vitesse d’onde moyenne <span class="math notranslate nohighlight">\(S^{*}\)</span> dans le solveur de Riemann approché HLLC .\</p>
+<p>En supposant les solutions pour la pression dans la région étoilée données par :</p>
+<div class="math notranslate nohighlight">
+\[p_{L}^* = p_L + \rho_L (S_L - u_L)(S_{L}^* - u_L)\quad ;\quad p_{R}^* = p_R + \rho_R(S_R - u_R)(S^* - u_R) \]</div>
+<p>Nous imposons les conditions suivantes sur les approximations du solveur de Riemann :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left.
+    \begin{array}{lc}
+        u_{L}^* = u_{R}^* = u^*   \\
+        p_{L}^* = p_{R}^* = p^*    \\
+       
+    \end{array}
+\right \} \end{split}\]</div>
+<p>D’après les conditions ci-dessus <span class="math notranslate nohighlight">\(p_{L}^* = p_{R}^*\)</span>, ce qui conduit à une expression de la vitesse <span class="math notranslate nohighlight">\(S^*\)</span> uniquement en termes des vitesses supposées <span class="math notranslate nohighlight">\(S_L\)</span> et <span class="math notranslate nohighlight">\(S_R\)</span>, à savoir:</p>
+<div class="math notranslate nohighlight">
+\[S^* = \frac{p_R - p_L + \rho_L u_L(S_L - u_L) - \rho_R u_R(S_R - u_R)}{\rho_L (S_L - u_L) - \rho_R (S_R - u_R)}\]</div>
+<p id="content-vf-labels">## Méthode du schéma volume finis</p>
+<p>On souhaite résoudre ce problème numériquement à l’aide d’une méthode volume finis. D’abord, on partitionne notre domaine d’étude <span class="math notranslate nohighlight">\([x_L;x_R] \times [0;T]\)</span> (où <span class="math notranslate nohighlight">\(T&gt;0\)</span> temps maximal).</p>
+<p>On discrétise en <span class="math notranslate nohighlight">\(m\)</span> nœuds <span class="math notranslate nohighlight">\(x_i\)</span> régulièrement espacés d’un pas <span class="math notranslate nohighlight">\(\Delta x\)</span> l’intervalle <span class="math notranslate nohighlight">\([x_L;x_R]\)</span> (on a donc <span class="math notranslate nohighlight">\(m-1\)</span> mailles en espace); de même l’intervalle de temps <span class="math notranslate nohighlight">\([0;T]\)</span> est discrétisé en <span class="math notranslate nohighlight">\(n\)</span> nœuds  <span class="math notranslate nohighlight">\(t^k\)</span> régulièrement espacés d’un pas <span class="math notranslate nohighlight">\(\Delta t\)</span> (on a donc <span class="math notranslate nohighlight">\(n-1\)</span> mailles en temps). On a :</p>
+<div class="math notranslate nohighlight">
+\[t^k=k \Delta t \quad \forall \ k = 1,...,n \quad \text{et} \quad x_{i+\frac{1}{2}} = x_i + \frac{\Delta x}{2} \quad \forall \ i = 1,...,m\]</div>
+<div class="figure align-default" id="id1">
+<img alt="../_images/fig_intervalle.png" src="../_images/fig_intervalle.png" />
+<p class="caption"><span class="caption-number">Fig. 3.5 </span><span class="caption-text">Structure du solveur de Riemann approché HLLC</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>Sur chaque sous-maille <span class="math notranslate nohighlight">\(I_i = [x_{i-\frac{1}{2}};x_{i+\frac{1}{2}}]\)</span>, on définit la valeur moyenne de <span class="math notranslate nohighlight">\(\pmb{U}(x,t^n)\)</span> la solution exacte au temps <span class="math notranslate nohighlight">\(t^n\)</span> par :</p>
+<div class="math notranslate nohighlight">
+\[\overline{\pmb{U}_i}^n = \frac{1}{\Delta x} \int_{x_{i-\frac{1}{2}}}^{x_{i+\frac{1}{2}}} \pmb{U}(x,t^n)dx \]</div>
+<p>et le flux (physique) sur l’interface <span class="math notranslate nohighlight">\(x_{i+\frac{1}{2}}\)</span> par :</p>
+<div class="math notranslate nohighlight">
+\[\overline{\textit{F}}_{i + \frac{1}{2}}^{\, n} = \frac{1}{\Delta t} \int_{t^n}^{t^{n+1}} \pmb{F(U}(x_{i+\frac{1}{2}}, t^n)dt\]</div>
+<p>On notera <span class="math notranslate nohighlight">\(\pmb{U}_i^n\)</span> l’approximation de <span class="math notranslate nohighlight">\(\overline{\pmb{U}_i}^n\)</span> et <span class="math notranslate nohighlight">\(\textit{F}_{i + \frac{1}{2}}^{\, n}\)</span> l’approximation de <span class="math notranslate nohighlight">\(\overline{\textit{F}}_{i + \frac{1}{2}}^{ \, n}\)</span> correspondant au flux numérique au point <span class="math notranslate nohighlight">\(x_{i + \frac{1}{2}}\)</span>, à l’instant <span class="math notranslate nohighlight">\(t^n\)</span>. Ainsi, on identifiera <span class="math notranslate nohighlight">\(\pmb{U}_h(x,t)\)</span>, la valeur approchée de la solution <span class="math notranslate nohighlight">\(\pmb{U}(x,t)\)</span>, à <span class="math notranslate nohighlight">\(\pmb{U}_i^n\)</span> pour <span class="math notranslate nohighlight">\(x \in I_i\)</span> et <span class="math notranslate nohighlight">\(t \in [t^n;t^{n+1}[\)</span>.\
+Et pour résoudre numériquement le problème \eqref{problème général}, on utilisera la formule conservative suivante :</p>
+<div class="math notranslate nohighlight" id="equation-formule-conservative">
+<span class="eqno">(3.18)<a class="headerlink" href="#equation-formule-conservative" title="Permalink to this equation">¶</a></span>\[\pmb{U}_i^{n+1} = \pmb{U}_i^{n} + \frac{\Delta t}{\Delta x}(\textit{F}_{i - \frac{1}{2}}^{\, n} - \textit{F}_{i + \frac{1}{2}}^{\, n})\]</div>
+<p>Le flux numérique associé au schéma de Godunov est donné par :</p>
+<div class="math notranslate nohighlight">
+\[\textit{F}_{i + \frac{1}{2}}^{\, n} = \pmb{F(U}_{i + \frac{1}{2}}^n(0))\]</div>
+<p>où <span class="math notranslate nohighlight">\(\pmb{U}_{i + \frac{1}{2}}^n(0)\)</span> correspond à la solution autosimilaire <span class="math notranslate nohighlight">\(\pmb{U}_{i + \frac{1}{2}}^n(\frac{x}{t})\)</span> (ne dépend que de <span class="math notranslate nohighlight">\(\frac{x}{t}\)</span>) du problème de Riemann évalué en <span class="math notranslate nohighlight">\(\frac{x}{t} = 0\)</span> suivant :</p>
+<div class="math notranslate nohighlight" id="equation-loi-de-conservation">
+<span class="eqno">(3.19)<a class="headerlink" href="#equation-loi-de-conservation" title="Permalink to this equation">¶</a></span>\[\begin{split}\left\{
+\begin{array}{ll} 
+\frac{\partial \pmb{U}}{\partial t} + \frac{\partial \pmb{F(U)}}{\partial x} = 0 \\ \\
+\pmb{U}(x,0) = \left\{ \begin{array}{ll}
+ \pmb{U_L} \quad \text{si} \quad x&gt;0 \\ 
+ \pmb{U_R} \quad \text{si} \quad x&gt;0
+\end{array}
 \right.
-\end{split}\]</div>
-<p>où <span class="math notranslate nohighlight">\(\pmb{U}\)</span> le vecteur des variables conservatives et <span class="math notranslate nohighlight">\(\pmb{U^{(0)}}\)</span> défini comme dans \eqref{condition_init}.</p>
+\end{array}
+\right.\end{split}\]</div>
+<p>La droite d’équation <span class="math notranslate nohighlight">\(\frac{x}{t} = 0\)</span> correspond à l’axe des <span class="math notranslate nohighlight">\(t\)</span> ici.</p>
+<p>On rappelle que le schéma de Gondunov est conservatif, consistant et entropique.</p>
+<p>Pour l’estimation de la vitesse <span class="math notranslate nohighlight">\(S^+ \geq 0\)</span> de l’onde présente dans le solveur Rusanov, un autre choix que dans dans la sous-section \ref{estimations vitesses} est possible : <span class="math notranslate nohighlight">\(S^+=S_{\max}^{n}\)</span>, la vitesse maximale de l’onde présente au moment approprié trouvée en imposant la condition de stabilité  de Courant.</p>
+<p>La vitesse est liée à <span class="math notranslate nohighlight">\(\Delta t\)</span> (pas de temps) et à l’espacement de la grille <span class="math notranslate nohighlight">\(\Delta x\)</span> via la condition CFL :</p>
+<div class="math notranslate nohighlight" id="equation-cfl">
+<span class="eqno">(3.20)<a class="headerlink" href="#equation-cfl" title="Permalink to this equation">¶</a></span>\[\ S_{\max}^{n} = \frac{C_{cfl}  \Delta x}{\Delta t}\]</div>
+<p>où <span class="math notranslate nohighlight">\(C_{cfl}\)</span> est le coefficient du nombre de Courant, généralement choisi (empiriquement) comme étant <span class="math notranslate nohighlight">\(C_{cfl} \approx 0,9\)</span>. On sait que le pas de temps <span class="math notranslate nohighlight">\(\Delta t\)</span> de notre schéma numérique ne sera pas constant.  \ \
+Pour <span class="math notranslate nohighlight">\(C_{cfl} = 1\)</span>, on a <span class="math notranslate nohighlight">\( S^+ = \frac{\Delta x}{\Delta t}\)</span>, ce qui donne le flux numérique de \textbf{Rusanov} :</p>
+<div class="math notranslate nohighlight">
+\[\ F_{i+\frac{1}{2}}^n = \frac{1}{2}(\pmb{F_L} + \pmb{F_R}) - \frac{1}{2} \frac{\Delta x}{\Delta t}(\pmb{U_R} - \pmb{U_L})\]</div>
+<p>Enfin, pour définir la solution du problème de Riemann <span class="xref std std-ref">loi de conservation</span>, nous allons utiliser les solutions du problème de Riemann approché que nous avons introduites précédemment.</p>
+</div>
+<div class="section" id="algorithmes-pour-les-flux-numeriques-des-solveurs-rusanov-hll-et-hllc">
+<h2><span class="section-number">3.4. </span>Algorithmes pour les flux numériques des solveurs Rusanov, HLL et  HLLC<a class="headerlink" href="#algorithmes-pour-les-flux-numeriques-des-solveurs-rusanov-hll-et-hllc" title="Permalink to this headline">¶</a></h2>
+<p>Pour les calculs des flux numériques, nous allons utiliser les solutions du problème de Riemann approché que nous avons définies précédemment.</p>
+<p>Pour implémenter le solveur de Riemann approché Rusanov par la méthode de Godunov \cite{[145]}, on effectue les étapes suivantes :</p>
+<p><strong>Étape 1</strong> : À chaque interface, calculer les vitesses d’onde <span class="math notranslate nohighlight">\(S_L\)</span> et <span class="math notranslate nohighlight">\(S_R\)</span>.</p>
+<p><strong>Étape 2</strong> : Calculer une seule vitesse d’interface avec <span class="math notranslate nohighlight">\( S^+ = \max(S_L, S_R)\)</span>.</p>
+<p><strong>Étape 3</strong> : Calculer le flux intercellulaire de Rusanov .</p>
+<p><span class="math notranslate nohighlight">\( F_{i+\frac{1}{2}}^{\, n} = \frac{1}{2}(\pmb{F_L} + \pmb{F_R}) - \frac{1}{2} S^+ (\pmb{U_R} - \pmb{U_L})\)</span> et utilisez le dans la formule conservative :
+\begin{center}
+<span class="math notranslate nohighlight">\(\pmb{U}_{i}^{n+1} = \pmb{U}_{i}^{n} + \frac{\Delta t}{\Delta x} \left(\textit{F}_{i-\frac{1}{2}}^{\, n} - \textit{F}_{i + \frac{1}{2}}^{\, n} \right)\)</span>
+\end{center}</p>
+<p>Pour implémenter le solveur de Riemann approché HLL par la méthode de Godunov \cite{[145]}, on effectue les étapes suivantes:</p>
+<p><strong>Étape 1</strong> : Calculer les vitesses d’onde <span class="math notranslate nohighlight">\(S_L\)</span> et <span class="math notranslate nohighlight">\(S_R\)</span>.</p>
+<p><strong>Étape 2</strong> : Calculer le flux HLL.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_{i+\frac{1}{2}}^{hll}  = \left\{ 
+\begin{array}{c c}
+  \pmb{F_L} &amp; \quad \text{si\, $0 \leq S_L$}\\
+  \frac{S_R \pmb{F_L} - S_L \pmb{F_R} + S_L S_R(\pmb{U_R}-\pmb{U_L)}}{S_R-S_L} &amp; \quad \text{si\, $S_L \leq 0 \leq S_R$} \quad,\\ 
+ \pmb{F_R} &amp; \quad \text{si\, $0 \geq S_R$} \\ \end{array} \right.\end{split}\]</div>
+<p>utilisez-le dans la formule conservative :</p>
+<div class="math notranslate nohighlight">
+\[ $\pmb{U}_{i}^{n+1} = \pmb{U}_{i}^{n} + \frac{\Delta t}{\Delta x} \left(\textit{F}_{i-\frac{1}{2}}^{\, n} - \textit{F}_{i + \frac{1}{2}}^{\, n} \right)$ \]</div>
+<p>Voici les trois étapes pour implémenter le solveur de Riemann approché HLLC par la méthode de Godunov \cite{[145]} :</p>
+<p><strong>Étape 1</strong> : Calculer les vitesses d’onde <span class="math notranslate nohighlight">\(S_L\)</span>, <span class="math notranslate nohighlight">\(S^*\)</span> et <span class="math notranslate nohighlight">\(S_R\)</span>. \
+<strong>Étape 2</strong> : Calculer les états <span class="math notranslate nohighlight">\(\pmb{U_L}\)</span> et <span class="math notranslate nohighlight">\(\pmb{U_R}\)</span> en utilisant \eqref{U_K étoile}.                                             \
+<strong>Étape 3</strong> : Calculer le flux HLLC. \</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_{i+\frac{1}{2}}^{hllc}  = \left\{ 
+\begin{array}{c c}
+  \pmb{F_L} &amp; \quad \text{si\, $0 \leq S_L$}\\
+  \pmb{F_{L}^*} = \pmb{F_L} + S_L (\pmb{U_{L}^*} -\pmb{U_{L}}) &amp; \quad \text{si\, $S_{L} \leq 0 \leq S^*$} \quad,\\ 
+   \pmb{F_{R}^*} = \pmb{F_R} + S_R (\pmb{U_{R}^*} -\pmb{U_{R}}) &amp; \quad \text{si\, $S^* \leq 0 \leq S_R$} \quad,\\ 
+ \pmb{F_R} &amp; \quad \text{si\, $0 \geq S_R$} \\ \end{array} \right.\end{split}\]</div>
+<p>et utilisez le dans la formule conservative :</p>
+<div class="math notranslate nohighlight">
+\[ $\pmb{U}_{i}^{n+1} = \pmb{U}_{i}^{n} + \frac{\Delta t}{\Delta x} \left(\textit{F}_{i-\frac{1}{2}}^{\, n} - \textit{F}_{i + \frac{1}{2}}^{\, n} \right)$ \]</div>
+</div>
+<div class="section" id="conditions-aux-bords-transmissives-dans-le-cas-des-equations-euler-unidimensionnelles">
+<span id="content-bc-labels"></span><h2><span class="section-number">3.5. </span>Conditions aux bords transmissives dans le cas des équations Euler unidimensionnelles.<a class="headerlink" href="#conditions-aux-bords-transmissives-dans-le-cas-des-equations-euler-unidimensionnelles" title="Permalink to this headline">¶</a></h2>
+<p>Considérons l’intervalle en espace <span class="math notranslate nohighlight">\([0;L] = [x_1;x_m]\)</span> discrétisé en <span class="math notranslate nohighlight">\(m-1\)</span> mailles de longueur <span class="math notranslate nohighlight">\(\Delta x\)</span> et le même intervalle en temps que précédemment <span class="math notranslate nohighlight">\([0;T]=[t^1;t^n]\)</span>. Nous avons besoin de définir des conditions aux bords en <span class="math notranslate nohighlight">\(x=0 \ ( \ =x_1)\)</span> et en <span class="math notranslate nohighlight">\(x=L \ ( \ =x_m)\)</span> comme dans la figure \ref{conditions aux bords} . En effet, numériquement ces conditions aux bords doivent nous permettre d’obtenir les flux numériques <span class="math notranslate nohighlight">\(\textit{F}_{\frac{1}{2}}^{\, n}\)</span> et <span class="math notranslate nohighlight">\(\textit{F}_{m-\frac{1}{2}}^{\, n}\)</span> impliqués dans la formule conservative du schéma de Godunov \cite{[145]} <span class="xref std std-ref">formule conservative</span>. Ainsi, les solutions approchées <span class="math notranslate nohighlight">\(\pmb{U}_1^n\)</span> et <span class="math notranslate nohighlight">\(\pmb{U}_m^n\)</span> au temps <span class="math notranslate nohighlight">\(t=t^n\)</span> pourront être calculées et nous pourrons réitérer ces opérations pour le calcul de la solution approchée au temps <span class="math notranslate nohighlight">\(t^{n+1}\)</span>,  <span class="math notranslate nohighlight">\(\pmb{U}_i^{n+1}\)</span> constante par morceaux, pour <span class="math notranslate nohighlight">\(i=1,...,m\)</span>.</p>
+<div class="figure align-default" id="conditions-aux-bords">
+<img alt="../_images/condBord.png" src="../_images/condBord.png" />
+<p class="caption"><span class="caption-number">Fig. 3.6 </span><span class="caption-text">Conditions aux bords au temps <span class="math notranslate nohighlight">\(t=t^n\)</span>. Les flux manquants en dehors du domaine de calcul <span class="math notranslate nohighlight">\([0;L]\)</span> sont créés.</span><a class="headerlink" href="#conditions-aux-bords" title="Permalink to this image">¶</a></p>
+</div>
+<p>Autrement dit, nous allons imposer des valeurs fictives dans les sous-mailles fictives <span class="math notranslate nohighlight">\(I_0\)</span> et <span class="math notranslate nohighlight">\(I_m\)</span>, adjacentes à <span class="math notranslate nohighlight">\(I_1\)</span> et <span class="math notranslate nohighlight">\(I_{m-1}\)</span> respectivement. La figure <a class="reference internal" href="#conditions-aux-bords"><span class="std std-numref">Fig. 3.6</span></a> résume la situation. Ainsi, nous pourrons résoudre les problèmes de Riemann aux interfaces <span class="math notranslate nohighlight">\(x_1\)</span> et <span class="math notranslate nohighlight">\(x_m\)</span> avec les données à gauche et à droite qui sont <span class="math notranslate nohighlight">\((\pmb{U}_0^n,\pmb{U}_1^n)\)</span> et <span class="math notranslate nohighlight">\((\pmb{U}_{m-1}^n,\pmb{U}_m^n)\)</span> respectivement; les flux de Godunov \cite{[145]} correspondants <span class="math notranslate nohighlight">\(\textit{F}_{\frac{1}{2}}^{\, n}\)</span> et <span class="math notranslate nohighlight">\(\textit{F}_{m-\frac{1}{2}}^{\, n}\)</span>  seront désormais calculables pour les mailles incluses dans notre domaine de calcul <span class="math notranslate nohighlight">\([0;L]\)</span>.</p>
+<p>L’imposition des conditions aux bords est essentiellement un problème physique. Il faut donc que l’implémentation numérique des conditions aux bords soit faite avec prudence. Ici, nous considérerons seulement des bords dits <em>transmissifs</em> ou encore <em>transparents</em>.</p>
+<p>Les bords <em>transmissifs</em> nécessitent un domaine de calcul suffisamment petit. les conditions aux bords correspondantes sont insensibles au passage des ondes traversant les bords. Il n’y a donc aucune modification possible des conditions aux bords. Ce type de bords suffit pour les problèmes unidimensionnel. Finalement, dans le cas des équations d’Euler 1D, dépendantes du temps, pour un bord droit transmissif on considère les conditions aux bords suivantes :</p>
+<div class="math notranslate nohighlight">
+\[ \rho_{m-1}^n = \rho_m^n, \quad m_{m-1}^n = m_m^n , \quad E_{m-1}^n = E_m^n\]</div>
+<p>Et pour un bord gauche transmissif, on considère les conditions aux bords :</p>
+<div class="math notranslate nohighlight">
+\[\rho_0^n = \rho_1^n, \quad m_0^n = m_1^n, \quad E_0^n=E_1^n\]</div>
+<p>produisant une problème de Riemann trivial. Dans la partie numérique, nous ne ferons que des cas tests où la solution restera inchangée aux bords.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -279,13 +695,13 @@
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Problème de Riemann associé aux équations d’Euler en 1D</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Problème de Riemann associé aux équations d’Euler en 1D</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../ResultatsNumeriques/ResultatsNumeriques.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Résultats numériques</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Résultats numériques</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

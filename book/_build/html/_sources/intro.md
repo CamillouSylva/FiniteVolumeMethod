@@ -10,3 +10,6 @@ La solution du problème de Riemann est également une solution de référence p
 Nous définirons ensuite des solveurs de Riemann approchés. 
 Existe-t-il un solveur qui soit meilleur que tous les autres ? Est-ce valable dans tous les cas ? 
 Nous allons essayer d'apporter des réponses à ces interrogations.
+
+```{bibliography}
+```

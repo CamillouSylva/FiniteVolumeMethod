@@ -293,5 +293,5 @@ class Euler1D:
 
 if __name__ == "__main__":
     E = Euler1D(Nx=100)
-    E.euler(solver_type="Rusanov", test=1)
+    E.euler(solver_type="Rusanov", test=2)
 # E.euler_bis("Rusanov", 1., 0., 1., 0.125, 0.0, 0.1, 0.2, 0.3)

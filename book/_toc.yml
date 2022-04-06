@@ -5,15 +5,28 @@ format: jb-book #Defines the structure of this Table of Contents (e.g., how to i
 root: intro #The first page of your book
 options: # The options key will be applied to all chapters, but not sub-sections
   numbered: True
-parts: 
+parts:
+  - caption: Lois de conservation
+    numbered: True
+    chapters:
+      - file: LoisDeConservation/LoisDeConservation.md
   - caption: Problème de Riemann associé aux équations d'Euler en 1D
+    numbered: True
     chapters: #A list of entries
       - file: ProblemeRiemann/ProblemeRiemann.md #A path to a file that contains the content for a chapter / section and these are relative to the root document
       # sections:
       #   - file: ProblemeRiemann/ProblemeRiemann.md
   - caption : Les Solveurs de Riemann approchés Rusanov, HLL et HLLC
+    numbered: True
     chapters:
       - file: SolveursRiemann/SolveursRiemann.md
   - caption: Résultats numériques
+    numbered: True
     chapters:
       - file: ResultatsNumeriques/ResultatsNumeriques.md
+        sections:
+          - file: ResultatsNumeriques/Notebook.ipynb
+  - caption: Conclusion
+    numbered: True
+    chapters:
+      - file: Conclusion/Conclusion.md
