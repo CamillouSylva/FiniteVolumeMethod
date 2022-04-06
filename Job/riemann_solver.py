@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
-from W import Wr, Wl
+from FiniteVolumeMethod.Job.W import Wr, Wl
 
 
 class RiemannSolver:
@@ -199,7 +199,7 @@ class RiemannSolver:
         self.mr = self.W_R.r * self.W_R.u  # moment a droite
 
         # self.Er = self.pr / (self.gamma - 1.) + 0.5 * self.rr * (self.ur ** 2)
-        self.Er = self.W_R.p / (self.gamma - 1.) + 0.5 * self.W_R.r * (self.W_R.r ** 2)
+        self.Er = self.W_R.p / (self.gamma - 1.) + 0.5 * self.W_R.r * (self.W_R.u ** 2)
 
         # self.er = self.pr / (self.rr * (self.gamma - 1.))
         self.er = self.W_R.p / (self.W_R.r * (self.gamma - 1.))
